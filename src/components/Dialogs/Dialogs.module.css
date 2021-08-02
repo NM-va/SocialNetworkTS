@@ -1,0 +1,70 @@
+
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.active {
+    color: #5A9D2C;
+}
+
+.userItem {
+    display: block;
+    color: #000;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.avatar {
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+}
+
+.messages {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.messagesItem {
+    color: #fff;
+    background-color: #AEC5A9;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    display: inline-block;
+}
+
+.messagesItem:nth-child(odd) {
+    align-self: flex-end;
+}
+
+.createMessage {
+    padding: 10px;
+    width: 100%;
+}
+
+.textField {
+    width: 400px;
+    height: 100px;
+    margin-bottom: 20px;
+    border-color: #003101;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.btn {
+    border-radius: 5px;
+    background-color: #003101;
+    display: inline-block;
+    height: 40px;
+    width: 100px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
