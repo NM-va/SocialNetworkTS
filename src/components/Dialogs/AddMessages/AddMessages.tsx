@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from "react";
 import styles from '../Dialogs.module.css';
-import {ActionTypes, addMessageActionCreator, updateMessageActionCreator} from "../../../redux/state";
+import {ActionTypes} from "../../../redux/state";
+import {addMessageActionCreator, updateMessageActionCreator} from "../../../redux/dialogs-reducer";
 
 type PropsType = {
   newMessage: string
