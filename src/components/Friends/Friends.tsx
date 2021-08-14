@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Friends.module.css";
-import {SidebarType} from "../../redux/state";
+import {SidebarType} from "../../redux/store";
 import {FriendsItem} from "./FriendsItem/FriendItem";
 
 export const Friends = (props: SidebarType) => {
