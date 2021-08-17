@@ -1,6 +1,12 @@
 import React from "react";
+import {StoreType} from "./redux/store";
 
-export const Provider = (props) => {
+export type ProviderType = {
+    store: StoreType
+    children: React.ReactNode
+}
+
+export const Provider = (props: ProviderType) => {
     return (
         <StoreContext.Provider value={props.store}>
             {props.children}
@@ -8,4 +14,4 @@ export const Provider = (props) => {
     )
 };
 
-export const StoreContext = React.createContext(null);
+export const StoreContext = React.createContext({} as StoreType);
