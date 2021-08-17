@@ -1,17 +1,23 @@
 import React from "react";
 import {Friends} from "./Friends";
-import {StoreType} from "../../../redux/redux-store";
+import {StoreType} from "../../redux/redux-store";
+import {StoreContext} from "../../StoreContext";
 
 
-type TypesProps = {
-    store: StoreType
-}
+export const FriendsContainer = () => {
 
-
-export const FriendsContainer = (props: TypesProps) => {
-    let state = props.store.getState();
 
     return (
-        <Friends friends={state.sidebar.friends} />
+        <StoreContext.Consumer>
+            {
+                (store: StoreType) => {
+                    let state = store.getState();
+
+                    return (
+                        <Friends friends={state.sidebar.friends}/>
+                    )
+                }
+            }
+        </StoreContext.Consumer>
     )
 };
