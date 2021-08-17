@@ -8,7 +8,7 @@ export const Friends = (props: SidebarType) => {
         return (
             <FriendsItem key={friend.id} name={friend.name} id={friend.id} avatar={friend.avatar} />
         )
-    })
+    });
     
     return (
         <div className={styles.sectionFriends}>
@@ -18,4 +18,4 @@ export const Friends = (props: SidebarType) => {
             </div>
         </div>
     )
-}
+};

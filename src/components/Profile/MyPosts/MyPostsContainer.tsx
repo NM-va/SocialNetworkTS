@@ -1,48 +1,26 @@
-import React, {ChangeEvent} from "react";
-import styles from './MyPosts.module.css';
-import {Post} from "./Post/Post";
-import {ActionTypes, PostType} from "../../../redux/store";
+import React from "react";
 import {addPostActionCreator, updateNewPostActionCreator} from "../../../redux/profile-reducer";
+import {MyPosts} from "./MyPosts";
+import {StoreType} from "../../../redux/redux-store";
+
 
 type TypesProps = {
-  postMessage: string
-  posts: Array<PostType>
-  // addPostCallback: (postMessage: string) => void
-  // updatePostTextCallback: (newPostText: string) => void
-  dispatch: (action: ActionTypes) => void
+    store: StoreType
 }
 
-export const MyPosts:React.FC<TypesProps> = (props) => {
-    
-    let postsElements = props.posts.map(post => <Post key={post.id} message={post.message} like={post.likesCount}/>);
-    
-    let addPostHandler = () => {
-      props.dispatch(addPostActionCreator(props.postMessage));
-      // props.addPostCallback(props.postMessage);
+export const MyPostsContainer:React.FC<TypesProps> = (props) => {
+    let state = props.store.getState();
+
+    let addPost = () => {
+      props.store.dispatch(addPostActionCreator(state.profilePage.postMessage));
     };
     
-    let onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      props.dispatch(updateNewPostActionCreator(e.currentTarget.value));
-      // props.updatePostTextCallback(e.currentTarget.value);
+    let onPostChange = (text: string) => {
+      props.store.dispatch(updateNewPostActionCreator(text));
     };
     
     return (
-        <div className={styles.postsBlock}>
-            <h2>My Posts</h2>
-            <div>
-                <div>
-                    <textarea
-                              value={props.postMessage}
-                              onChange={onPostChangeHandler}
-                              name="textPost"
-                              id="textPost"></textarea>
-                </div>
-                <button onClick={addPostHandler} type="button">Add post</button>
-                <button type="button">Remove</button>
-            </div>
-            <div className={styles.posts}>
-                {postsElements}
-            </div>
-        </div>
+        <MyPosts updatePostTextCallback={onPostChange} addPostCallback={addPost}
+                 posts={state.profilePage.posts} postMessage={state.profilePage.postMessage} />
     )
 }

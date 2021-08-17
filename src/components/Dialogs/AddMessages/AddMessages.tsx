@@ -5,23 +5,19 @@ import {addMessageActionCreator, updateMessageActionCreator} from "../../../redu
 
 type PropsType = {
   newMessage: string
-  // addMessageCallback: (textMessage: string) => void
-  // updateMessageCallback: (textMessage: string) => void
-  dispatch: (action: ActionTypes) => void
+  addMessageCallback: (textMessage: string) => void
+  updateMessageCallback: (textMessage: string) => void
 }
 
 export const AddMessages = (props: PropsType) => {
-  // let newMessageElement = React.useRef<HTMLTextAreaElement>(null);
-  
+
   let addMessageHandler = () => {
-    props.dispatch(addMessageActionCreator(props.newMessage));
-    // props.addMessageCallback(props.newMessage);
-  }
+    props.addMessageCallback(props.newMessage);
+  };
   
   let onMessageChangeHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
-    props.dispatch(updateMessageActionCreator(e.currentTarget.value))
-    // props.updateMessageCallback(e.currentTarget.value);
-  }
+    props.updateMessageCallback(e.currentTarget.value);
+  };
 
     return (
       <form className={styles.createMessage}>

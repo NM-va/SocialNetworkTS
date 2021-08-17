@@ -4,7 +4,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
-import {Dialogs} from "./components/Dialogs/Dialogs";
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
@@ -15,28 +15,16 @@ type PropsType = {
 }
 
 const App: React.FC<PropsType> = (props) =>  {
-    const state = props.store.getState();
-    let dialogs = state.dialogsPage.dialogs;
-    let message = state.dialogsPage.messages;
-    let newMessage = state.dialogsPage.newMessage;
-    let posts = state.profilePage.posts;
-    let messageNewPost = state.profilePage.messageNewPost;
-    let friends = state.sidebar.friends;
     
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar friends={friends} />
+                <Navbar store={props.store} />
                 <div className="app-wrapper-content">
-                    <Route path='/dialogs' render={() => <Dialogs dialogs={dialogs}
-                                                                  messages={message}
-                                                                  newMessage={newMessage}
-                                                                  dispatch={props.store.dispatch.bind(props.store)}
+                    <Route path='/dialogs' render={() => <DialogsContainer store={props.store}
                     />}/>
-                    <Route path='/profile' render={() => <Profile posts={posts}
-                                                                  postMessage={messageNewPost}
-                                                                  dispatch={props.store.dispatch.bind(props.store)}
+                    <Route path='/profile' render={() => <Profile store={props.store}
                     />}/>
                     <Route path='/news' render={() => <News />}/>
                     <Route path='/music' render={() => <Music />}/>
@@ -45,6 +33,6 @@ const App: React.FC<PropsType> = (props) =>  {
             </div>
         </BrowserRouter>
     );
-}
+}ж
 
 export default App;

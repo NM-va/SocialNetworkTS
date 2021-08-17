@@ -1,15 +1,13 @@
 import React, {ChangeEvent} from "react";
 import styles from './MyPosts.module.css';
 import {Post} from "./Post/Post";
-import {ActionTypes, PostType} from "../../../redux/store";
-import {addPostActionCreator, updateNewPostActionCreator} from "../../../redux/profile-reducer";
+import {PostType} from "../../../redux/store";
 
 type TypesProps = {
   postMessage: string
   posts: Array<PostType>
-  // addPostCallback: (postMessage: string) => void
-  // updatePostTextCallback: (newPostText: string) => void
-  dispatch: (action: ActionTypes) => void
+  addPostCallback: (postMessage: string) => void
+  updatePostTextCallback: (newPostText: string) => void
 }
 
 export const MyPosts:React.FC<TypesProps> = (props) => {
@@ -17,14 +15,12 @@ export const MyPosts:React.FC<TypesProps> = (props) => {
     let postsElements = props.posts.map(post => <Post key={post.id} message={post.message} like={post.likesCount}/>);
     
     let addPostHandler = () => {
-      props.dispatch(addPostActionCreator(props.postMessage));
-      // props.addPostCallback(props.postMessage);
-    }
+      props.addPostCallback(props.postMessage);
+    };
     
     let onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-      props.dispatch(updateNewPostActionCreator(e.currentTarget.value));
-      // props.updatePostTextCallback(e.currentTarget.value);
-    }
+      props.updatePostTextCallback(e.currentTarget.value);
+    };
     
     return (
         <div className={styles.postsBlock}>

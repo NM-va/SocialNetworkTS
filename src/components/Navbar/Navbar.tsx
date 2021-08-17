@@ -1,11 +1,16 @@
 import React from "react";
-import {NavLink, Route} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import styles from './Navbar.module.css';
-import {Friends} from "../Friends/Friends";
-import {SidebarType} from "../../redux/store";
+import {StoreType} from "../../../redux/redux-store";
+import {FriendsContainer} from "../Friends/FriendsContainer";
 
 
-export const Navbar = (props: SidebarType) => {
+type TypesProps = {
+    store: StoreType
+}
+
+export const Navbar = (props: TypesProps) => {
+
     return (
         <nav className={styles.nav}>
             <NavLink to="/profile" activeClassName={styles.activeLink} className={styles.item}>Profile</NavLink>
@@ -13,7 +18,7 @@ export const Navbar = (props: SidebarType) => {
             <NavLink to="/news" activeClassName={styles.activeLink} className={styles.item}>News</NavLink>
             <NavLink to="/music" activeClassName={styles.activeLink} className={styles.item}>Music</NavLink>
             <NavLink to="/settings" activeClassName={styles.activeLink} className={styles.item}>Settings</NavLink>
-            <Friends friends={props.friends} />
+            <FriendsContainer store={props.store} />
         </nav>
     )
 }

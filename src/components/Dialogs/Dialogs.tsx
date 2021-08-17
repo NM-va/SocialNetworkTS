@@ -3,16 +3,15 @@ import styles from "./Dialogs.module.css";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {Message} from "./Message/Message";
 import {AddMessages} from "./AddMessages/AddMessages";
-import {ActionTypes, DialogType, MessageType} from "../../redux/store";
+import {DialogType, MessageType} from "../../redux/store";
 
 
 type PropsType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessage: string
-    // addMessage: (textMessage: string) => void
-    // updateMessage: (textMessage: string) => void
-    dispatch: (action: ActionTypes) => void
+    addMessage: (textMessage: string) => void
+    updateMessage: (textMessage: string) => void
 }
 
 export const Dialogs = (props: PropsType) => {
@@ -31,12 +30,11 @@ export const Dialogs = (props: PropsType) => {
                 {messagesElements}
               </div>
               <AddMessages newMessage={props.newMessage}
-                           dispatch={props.dispatch}
-                           // addMessageCallback={props.addMessage}
-                           // updateMessageCallback={props.updateMessage}
+                           addMessageCallback={props.addMessage}
+                           updateMessageCallback={props.updateMessage}
               />
             </div>
 
         </div>
     )
-}
+};
