@@ -1,21 +1,15 @@
 import React, {ChangeEvent} from "react";
 import styles from './MyPosts.module.css';
 import {Post} from "./Post/Post";
-import {PostType} from "../../../redux/store";
+import {MyPostsPropsType} from "./MyPostsContainer";
 
-type TypesProps = {
-  postMessage: string
-  posts: Array<PostType>
-  addPostCallback: (postMessage: string) => void
-  updatePostTextCallback: (newPostText: string) => void
-}
 
-export const MyPosts:React.FC<TypesProps> = (props) => {
+export const MyPosts:React.FC<MyPostsPropsType> = (props) => {
     
     let postsElements = props.posts.map(post => <Post key={post.id} message={post.message} like={post.likesCount}/>);
     
     let addPostHandler = () => {
-      props.addPostCallback(props.postMessage);
+      props.addPost(props.postMessage);
     };
     
     let onPostChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {

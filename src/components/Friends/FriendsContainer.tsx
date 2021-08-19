@@ -1,23 +1,20 @@
 import React from "react";
 import {Friends} from "./Friends";
 import {StoreType} from "../../redux/redux-store";
-import {StoreContext} from "../../StoreContext";
+import {connect} from "react-redux";
+import {InitialStateType} from "../../redux/sidebar-reducer";
 
 
-export const FriendsContainer = () => {
+type MapStatePropsType = {
+    sidebar: InitialStateType
+}
 
+export type FriendsTypeProps = MapStatePropsType;
 
-    return (
-        <StoreContext.Consumer>
-            {
-                (store: StoreType) => {
-                    let state = store.getState();
+let mapStateToProps = (state: StoreType) => {
+    return {
+        sidebar: state.sidebar
+    }
+}
 
-                    return (
-                        <Friends friends={state.sidebar.friends}/>
-                    )
-                }
-            }
-        </StoreContext.Consumer>
-    )
-};
+export const FriendsContainer = connect(mapStateToProps, {})(Friends)

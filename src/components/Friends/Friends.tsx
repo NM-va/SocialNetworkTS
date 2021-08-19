@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./Friends.module.css";
-import {SidebarType} from "../../redux/store";
 import {FriendsItem} from "./FriendsItem/FriendItem";
+import {FriendsTypeProps} from "./FriendsContainer";
 
-export const Friends = (props: SidebarType) => {
-    let friendsList = props.friends.map(friend => {
+export const Friends = (props: FriendsTypeProps) => {
+    let friendsList = props.sidebar.friends.map(friend => {
         return (
             <FriendsItem key={friend.id} name={friend.name} id={friend.id} avatar={friend.avatar} />
         )

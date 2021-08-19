@@ -3,14 +3,12 @@ import {profileReducer} from "./profile-reducer";
 import {dialogsReducer} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 
-type StoreType = {
-
-}
-
-let reducers = combineReducers({
+let reducer = combineReducers({
   profilePage: profileReducer,
   dialogsPage: dialogsReducer,
   sidebar: sidebarReducer
 });
 
-export let store = createStore(reducers);
+export type StoreType = ReturnType<typeof reducer>;
+
+export let store = createStore(reducer);
