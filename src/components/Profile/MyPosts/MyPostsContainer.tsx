@@ -5,7 +5,6 @@ import {StoreType} from "../../../redux/redux-store";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 
-
 type MapStatePropsType = {
     postMessage: string
     posts: Array<PostType>

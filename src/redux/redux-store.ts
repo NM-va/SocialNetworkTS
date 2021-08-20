@@ -11,4 +11,11 @@ let reducer = combineReducers({
 
 export type StoreType = ReturnType<typeof reducer>;
 
+
 export let store = createStore(reducer);
+
+declare global {
+  interface Window { store: any; }
+}
+
+window.store = store;
