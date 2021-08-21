@@ -1,6 +1,7 @@
-import {addPostActionCreator, profileReducer, updateNewPostActionCreator} from "./profile-reducer"
-import {addMessageActionCreator, dialogsReducer, updateMessageActionCreator} from "./dialogs-reducer";
+import {addPostAC, profileReducer, updateNewPostAC} from "./profile-reducer"
+import {addMessageAC, dialogsReducer, updateMessageAC} from "./dialogs-reducer";
 import { sidebarReducer } from "./sidebar-reducer";
+import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
 
 export type MessageType = {
   id: number
@@ -67,12 +68,21 @@ const UPDATE_MESSAGE = "UPDATE-MESSAGE";
 //     postMessage: string
 // }
 
-type AddPostActionType = ReturnType<typeof addPostActionCreator>
-type UpdateNewPostActionType = ReturnType<typeof updateNewPostActionCreator>
-type AddMessageActionType = ReturnType<typeof addMessageActionCreator>
-type UpdateMessageActionType = ReturnType<typeof updateMessageActionCreator>
+type AddPostActionType = ReturnType<typeof addPostAC>
+type UpdateNewPostActionType = ReturnType<typeof updateNewPostAC>
+type AddMessageActionType = ReturnType<typeof addMessageAC>
+type UpdateMessageActionType = ReturnType<typeof updateMessageAC>
+type FollowActionType = ReturnType <typeof followAC>
+type UnFollowActionType = ReturnType <typeof unfollowAC>
+type SetUsersType = ReturnType <typeof setUsersAC>
 
-export type ActionTypes = AddPostActionType | UpdateNewPostActionType | AddMessageActionType | UpdateMessageActionType
+export type ActionTypes = AddPostActionType
+    | UpdateNewPostActionType
+    | AddMessageActionType
+    | UpdateMessageActionType
+    | FollowActionType
+    | UnFollowActionType
+    | SetUsersType
 
 
 
