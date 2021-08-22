@@ -7,7 +7,6 @@ import {InitialStateType} from "../../redux/dialogs-reducer";
 import {Dispatch} from "redux";
 
 
-
 type MapStatePropsType = {
     dialogsPage: InitialStateType
 }

@@ -3,44 +3,37 @@ import {addMessageAC, dialogsReducer, updateMessageAC} from "./dialogs-reducer";
 import { sidebarReducer } from "./sidebar-reducer";
 import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
 
-export type MessageType = {
+type MessageType = {
   id: number
   message: string
 }
-
-export type DialogType = {
+type DialogType = {
   id: number
   name: string
 }
-
-export type PostType = {
+type PostType = {
   id: number
   message: string
   likesCount: number
 }
-
-export type ProfilePageType = {
+type ProfilePageType = {
   messageNewPost: string
   posts: Array<PostType>
 }
-
-export type DialogPageType = {
+type DialogPageType = {
   dialogs: Array<DialogType>
   messages: Array<MessageType>
   newMessage: string
 }
-
-export type FriendItemType = {
+type FriendItemType = {
   id: number
   name: string
   avatar: string
 }
-
-export type SidebarType = {
+type SidebarType = {
   friends: Array<FriendItemType>
 }
-
-export type RootStateType = {
+type RootStateType = {
   profilePage: ProfilePageType
   dialogsPage: DialogPageType
   sidebar: SidebarType
@@ -49,8 +42,7 @@ export type RootStateType = {
 // export type StateType = {
 //     state: RootStateType
 // }
-
-export type StoreType = {
+type StoreType = {
   _state: RootStateType
   _callSubscriber: () => void
   subscribe: (observer: () => void) => void
@@ -68,21 +60,21 @@ const UPDATE_MESSAGE = "UPDATE-MESSAGE";
 //     postMessage: string
 // }
 
-type AddPostActionType = ReturnType<typeof addPostAC>
-type UpdateNewPostActionType = ReturnType<typeof updateNewPostAC>
-type AddMessageActionType = ReturnType<typeof addMessageAC>
-type UpdateMessageActionType = ReturnType<typeof updateMessageAC>
-type FollowActionType = ReturnType <typeof followAC>
-type UnFollowActionType = ReturnType <typeof unfollowAC>
-type SetUsersType = ReturnType <typeof setUsersAC>
+export type AddPostActionType = ReturnType<typeof addPostAC>
+export type UpdateNewPostActionType = ReturnType<typeof updateNewPostAC>
+export type AddMessageActionType = ReturnType<typeof addMessageAC>
+export type UpdateMessageActionType = ReturnType<typeof updateMessageAC>
+export type FollowActionType = ReturnType <typeof followAC>
+export type UnFollowActionType = ReturnType <typeof unfollowAC>
+export type SetUsersType = ReturnType <typeof setUsersAC>
 
 export type ActionTypes = AddPostActionType
-    | UpdateNewPostActionType
-    | AddMessageActionType
-    | UpdateMessageActionType
-    | FollowActionType
-    | UnFollowActionType
-    | SetUsersType
+  | UpdateNewPostActionType
+  | AddMessageActionType
+  | UpdateMessageActionType
+  | FollowActionType
+  | UnFollowActionType
+  | SetUsersType
 
 
 
