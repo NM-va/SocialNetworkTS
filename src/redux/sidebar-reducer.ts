@@ -1,4 +1,4 @@
-import {ActionTypes} from "./store";
+import {ActionTypes} from "./redux-store";
 
 export type FriendItemType = {
     id: number

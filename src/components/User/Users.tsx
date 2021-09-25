@@ -1,54 +1,77 @@
 import React from "react";
-import {UsersPagePropsType} from "./UsersContainer";
 import styles from "./Users.module.css"
-import axios from "axios";
 import userPhoto from "./../../assets/images/default_avatar.png"
-import {StoreType} from "../../redux/redux-store";
+import {UserItemType} from "../../redux/users-reducer";
 
-export class Users extends React.Component<UsersPagePropsType, StoreType> {
-  
-  componentDidMount() {
-      axios.get("https://social-network.samuraijs.com/api/1.0/users")
-          .then(response => {
-              this.props.setUsers(response.data.items);
-          });
-  }
+type PropsType = {
+    users: Array<UserItemType>
+    pageSize: number,
+    totalUsersCount: number,
+    currentPage: number
+    onPageChanged: (pageNumber: number) => void
+    follow: (userId: string) => void
+    unfollow: (userId: string) => void
+}
+
+export const Users = (props: PropsType) => {
     
-    render(){
+    
+    let pagesCount: number = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pages: Array<number> = [];
+    
+    
+    for (let i = 0; i <= pagesCount; i++) {
+        pages.push(i);
+    }
+    
+    
     return (
         <div>
-          {
-            this.props.usersPage.users.map(user => (
-                <div key={user.id}>
-                  <div>
-                    <div className={styles.userAvatar}>
-                      <img src={user.photos.small != null ? user.photos.small : userPhoto} alt=""/>
+            <ul className={styles.pagination}>
+                {
+                    pages.map(page => {
+                        return (
+                            <li className={`${props.currentPage === page ? styles.selectedPage : ""} ${styles.pageItem}`}
+                                onClick={(e) => {
+                                    props.onPageChanged(page)
+                                }}
+                            >{page}</li>
+                        )
+                    })
+                }
+            </ul>
+            
+            {
+                props.users.map(user => (
+                    <div key={user.id}>
+                        <div>
+                            <div className={styles.userAvatar}>
+                                <img src={user.photos.small != null ? user.photos.small : userPhoto} alt=""/>
+                            </div>
+                            <div>
+                                {
+                                    user.followed ? <button type="button" onClick={() => {
+                                            props.unfollow(user.id)
+                                        }}>Unfollow</button>
+                                        : <button type="button" onClick={() => {
+                                            props.follow(user.id)
+                                        }}>Follow</button>
+                                }
+                            </div>
+                        </div>
+                        <div>
+                            <div>
+                                {user.name}
+                                <span>{user.status}</span>
+                            </div>
+                            <div>
+                                {"user.location.country"}
+                                <span>{"user.location.city"}</span>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                      {
-                        user.followed ? <button type="button" onClick={() => {
-                              this.props.unfollow(user.id)
-                            }}>Unfollow</button>
-                            : <button type="button" onClick={() => {
-                              this.props.follow(user.id)
-                            }}>Follow</button>
-                      }
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                      {user.fullName}
-                      <span>{user.status}</span>
-                    </div>
-                    <div>
-                      {"user.location.country"}
-                      <span>{"user.location.city"}</span>
-                    </div>
-                  </div>
-                </div>
-            ))
-          }
+                ))
+            }
         </div>
     )
-  }
 }

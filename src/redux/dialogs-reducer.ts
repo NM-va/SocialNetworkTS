@@ -1,4 +1,4 @@
-import {ActionTypes} from "./store";
+import {ActionTypes} from "./redux-store";
 
 const ADD_MESSAGE = "ADD-MESSAGE";
 const UPDATE_MESSAGE = "UPDATE-MESSAGE";

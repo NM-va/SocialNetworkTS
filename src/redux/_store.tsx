@@ -1,7 +1,7 @@
 import {addPostAC, profileReducer, updateNewPostAC} from "./profile-reducer"
 import {addMessageAC, dialogsReducer, updateMessageAC} from "./dialogs-reducer";
 import { sidebarReducer } from "./sidebar-reducer";
-import {followAC, setUsersAC, unfollowAC} from "./users-reducer";
+import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from "./users-reducer";
 
 type MessageType = {
   id: number
@@ -67,19 +67,24 @@ export type UpdateMessageActionType = ReturnType<typeof updateMessageAC>
 export type FollowActionType = ReturnType <typeof followAC>
 export type UnFollowActionType = ReturnType <typeof unfollowAC>
 export type SetUsersType = ReturnType <typeof setUsersAC>
+export type SetCurrentPageType = ReturnType <typeof setCurrentPageAC>
+export type SetTotalUsersCount = ReturnType <typeof setTotalUsersCountAC>
 
-export type ActionTypes = AddPostActionType
+export type ActionTypes =
+    AddPostActionType
   | UpdateNewPostActionType
   | AddMessageActionType
   | UpdateMessageActionType
   | FollowActionType
   | UnFollowActionType
   | SetUsersType
+  | SetCurrentPageType
+  | SetTotalUsersCount
 
 
 
 
-const store: StoreType = {
+const _store: StoreType = {
   _state: {
     profilePage: {
       messageNewPost: "it",
@@ -148,4 +153,4 @@ const store: StoreType = {
 }
 
 
-export default store;
+export default _store;
