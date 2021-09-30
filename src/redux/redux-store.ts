@@ -2,7 +2,15 @@ import {combineReducers, createStore} from "redux";
 import {addPostAC, profileReducer, updateNewPostAC} from "./profile-reducer";
 import {addMessageAC, dialogsReducer, updateMessageAC} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
-import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC, usersReducer} from "./users-reducer";
+import {
+    followAC,
+    setCurrentPageAC,
+    setTotalUsersCountAC,
+    setUsersAC,
+    toggleIsFetchingAC,
+    unfollowAC,
+    usersReducer
+} from "./users-reducer";
 
 export type AddPostActionType = ReturnType<typeof addPostAC>
 export type UpdateNewPostActionType = ReturnType<typeof updateNewPostAC>
@@ -13,6 +21,7 @@ export type UnFollowActionType = ReturnType <typeof unfollowAC>
 export type SetUsersType = ReturnType <typeof setUsersAC>
 export type SetCurrentPageType = ReturnType <typeof setCurrentPageAC>
 export type SetTotalUsersCount = ReturnType <typeof setTotalUsersCountAC>
+export type ToggleIsFetching = ReturnType <typeof toggleIsFetchingAC>
 
 export type ActionTypes =
     AddPostActionType
@@ -24,6 +33,7 @@ export type ActionTypes =
     | SetUsersType
     | SetCurrentPageType
     | SetTotalUsersCount
+    | ToggleIsFetching
 
 
 
@@ -39,8 +49,5 @@ export type StoreType = ReturnType<typeof reducer>;
 
 export let store = createStore(reducer);
 
-declare global {
-  interface Window { store: any; }
-}
-
+//@ts-ignore
 window.store = store;

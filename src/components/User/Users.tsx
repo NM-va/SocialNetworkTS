@@ -11,6 +11,7 @@ type PropsType = {
     onPageChanged: (pageNumber: number) => void
     follow: (userId: string) => void
     unfollow: (userId: string) => void
+    isFetching: boolean
 }
 
 export const Users = (props: PropsType) => {
