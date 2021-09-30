@@ -3,12 +3,12 @@ import {addPostAC, profileReducer, updateNewPostAC} from "./profile-reducer";
 import {addMessageAC, dialogsReducer, updateMessageAC} from "./dialogs-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {
-    followAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC,
-    toggleIsFetchingAC,
-    unfollowAC,
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    toggleIsFetching,
+    unfollow,
     usersReducer
 } from "./users-reducer";
 
@@ -16,12 +16,12 @@ export type AddPostActionType = ReturnType<typeof addPostAC>
 export type UpdateNewPostActionType = ReturnType<typeof updateNewPostAC>
 export type AddMessageActionType = ReturnType<typeof addMessageAC>
 export type UpdateMessageActionType = ReturnType<typeof updateMessageAC>
-export type FollowActionType = ReturnType <typeof followAC>
-export type UnFollowActionType = ReturnType <typeof unfollowAC>
-export type SetUsersType = ReturnType <typeof setUsersAC>
-export type SetCurrentPageType = ReturnType <typeof setCurrentPageAC>
-export type SetTotalUsersCount = ReturnType <typeof setTotalUsersCountAC>
-export type ToggleIsFetching = ReturnType <typeof toggleIsFetchingAC>
+export type FollowActionType = ReturnType <typeof follow>
+export type UnFollowActionType = ReturnType <typeof unfollow>
+export type SetUsersType = ReturnType <typeof setUsers>
+export type SetCurrentPageType = ReturnType <typeof setCurrentPage>
+export type SetTotalUsersCount = ReturnType <typeof setTotalUsersCount>
+export type ToggleIsFetching = ReturnType <typeof toggleIsFetching>
 
 export type ActionTypes =
     AddPostActionType
