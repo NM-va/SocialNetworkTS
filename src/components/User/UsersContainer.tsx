@@ -6,11 +6,11 @@ import {
     InitialStateType,
     setCurrentPage,
     setTotalUsersCount,
-    setUsers, toggleIsFetching,
+    setUsers,
+    toggleIsFetching,
     unfollow,
     UserItemType
 } from "../../redux/users-reducer";
-import {Dispatch} from "redux";
 import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
