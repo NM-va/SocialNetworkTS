@@ -15,6 +15,21 @@ import axios from "axios";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 
+type MapStatePropsType = {
+    usersPage: InitialStateType
+}
+
+type MapDispatchPropsType = {
+    follow: (userId: string) => void
+    unfollow: (userId: string) => void
+    setUsers: (users:UserItemType[]) => void
+    setCurrentPage: (pageNumber: number) => void
+    setTotalUsersCount: (totalCount: number) => void
+    toggleIsFetching: (isFetching: boolean) => void
+}
+
+export type UsersPagePropsType = MapStatePropsType & MapDispatchPropsType;
+
 
 class UsersAPIComponent extends React.Component<UsersPagePropsType, StoreType> {
     
@@ -54,20 +69,6 @@ class UsersAPIComponent extends React.Component<UsersPagePropsType, StoreType> {
     }
 }
 
-type MapStatePropsType = {
-    usersPage: InitialStateType
-}
-
-type MapDispatchPropsType = {
-    follow: (userId: string) => void
-    unfollow: (userId: string) => void
-    setUsers: (users:UserItemType[]) => void
-    setCurrentPage: (pageNumber: number) => void
-    setTotalUsersCount: (totalCount: number) => void
-    toggleIsFetching: (isFetching: boolean) => void
-}
-
-export type UsersPagePropsType = MapStatePropsType & MapDispatchPropsType;
 
 let mapStateToProps = (state: StoreType) => {
     return {

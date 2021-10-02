@@ -11,18 +11,20 @@ import {
     unfollow,
     usersReducer
 } from "./users-reducer";
+import {authReducer, setAuthUserData} from "./auth-reducer";
 
 export type AddPostActionType = ReturnType<typeof addPostAC>
 export type UpdateNewPostActionType = ReturnType<typeof updateNewPostAC>
 export type AddMessageActionType = ReturnType<typeof addMessageAC>
 export type UpdateMessageActionType = ReturnType<typeof updateMessageAC>
-export type FollowActionType = ReturnType <typeof follow>
-export type UnFollowActionType = ReturnType <typeof unfollow>
-export type SetUsersType = ReturnType <typeof setUsers>
-export type SetCurrentPageType = ReturnType <typeof setCurrentPage>
-export type SetTotalUsersCount = ReturnType <typeof setTotalUsersCount>
-export type ToggleIsFetching = ReturnType <typeof toggleIsFetching>
-export type SetUserProfile = ReturnType <typeof setUserProfile>
+export type FollowActionType = ReturnType<typeof follow>
+export type UnFollowActionType = ReturnType<typeof unfollow>
+export type SetUsersType = ReturnType<typeof setUsers>
+export type SetCurrentPageType = ReturnType<typeof setCurrentPage>
+export type SetTotalUsersCountType = ReturnType<typeof setTotalUsersCount>
+export type ToggleIsFetchingType = ReturnType<typeof toggleIsFetching>
+export type SetUserProfileType = ReturnType<typeof setUserProfile>
+export type SetUserDataType = ReturnType<typeof setAuthUserData>
 
 export type ActionTypes =
     AddPostActionType
@@ -33,17 +35,18 @@ export type ActionTypes =
     | UnFollowActionType
     | SetUsersType
     | SetCurrentPageType
-    | SetTotalUsersCount
-    | ToggleIsFetching
-    | SetUserProfile
-
+    | SetTotalUsersCountType
+    | ToggleIsFetchingType
+    | SetUserProfileType
+    | SetUserDataType
 
 
 let reducer = combineReducers({
-  profilePage: profileReducer,
-  dialogsPage: dialogsReducer,
-  sidebar: sidebarReducer,
-  users: usersReducer
+    profilePage: profileReducer,
+    dialogsPage: dialogsReducer,
+    sidebar: sidebarReducer,
+    users: usersReducer,
+    auth: authReducer
 });
 
 export type StoreType = ReturnType<typeof reducer>;
