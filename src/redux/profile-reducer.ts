@@ -1,4 +1,4 @@
-import {ActionTypes} from "./redux-store";
+import {addMessageAC, updateMessageAC, UpdateNewPostActionType} from "./dialogs-reducer";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
@@ -47,6 +47,18 @@ let initialState: InitialStateType = {
     ],
     profile: null,
 };
+
+
+export type AddPostActionType = ReturnType<typeof addPostAC>
+export type UpdateMessageActionType = ReturnType<typeof updateMessageAC>
+export type SetUserProfileType = ReturnType<typeof setUserProfile>
+
+
+type ActionTypes = AddPostActionType
+    | UpdateNewPostActionType
+    | SetUserProfileType
+
+
 
 export const profileReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
     switch (action.type) {

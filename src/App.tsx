@@ -8,7 +8,7 @@ import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {UsersContainer} from "./components/User/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
-import {HeaderContainer} from "./components/Header/HeaderContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 const App: React.FC = () =>  {
     

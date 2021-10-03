@@ -1,4 +1,4 @@
-import {ActionTypes} from "./redux-store";
+import {setUserProfile} from "./profile-reducer";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -33,6 +33,21 @@ let initialState = {
     currentPage: 1,
     isFetching: false
 };
+
+export type FollowActionType = ReturnType<typeof follow>
+export type UnFollowActionType = ReturnType<typeof unfollow>
+export type SetUsersType = ReturnType<typeof setUsers>
+export type SetCurrentPageType = ReturnType<typeof setCurrentPage>
+export type SetTotalUsersCountType = ReturnType<typeof setTotalUsersCount>
+export type ToggleIsFetchingType = ReturnType<typeof toggleIsFetching>
+
+type ActionTypes = FollowActionType
+    | UnFollowActionType
+    | SetUsersType
+    | SetCurrentPageType
+    | SetTotalUsersCountType
+    | ToggleIsFetchingType
+
 
 export type InitialStateType = typeof initialState;
 

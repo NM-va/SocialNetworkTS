@@ -1,13 +1,9 @@
 import React from 'react';
 import styles from './Header.module.css';
 import {NavLink} from "react-router-dom";
+import {AuthPropsType} from "./HeaderContainer";
 
-type PropsType = {
-    isAuth: boolean
-    login: string
-}
-
-export const Header = (props: PropsType) => {
+export const Header = (props: AuthPropsType) => {
     return (
         <header className={styles.header}>
             {/*<img src="https://image.freepik.com/free-vector/cute-cat-gaming-cartoon_138676-2969.jpg" alt=""/>*/}

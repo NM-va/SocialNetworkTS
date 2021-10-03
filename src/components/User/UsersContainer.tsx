@@ -17,6 +17,10 @@ import {Preloader} from "../common/Preloader/Preloader";
 
 type MapStatePropsType = {
     usersPage: InitialStateType
+    pageSize: number,
+    totalUsersCount: number,
+    currentPage: number,
+    isFetching: boolean
 }
 
 type MapDispatchPropsType = {
@@ -70,7 +74,7 @@ class UsersAPIComponent extends React.Component<UsersPagePropsType, StoreType> {
 }
 
 
-let mapStateToProps = (state: StoreType) => {
+let mapStateToProps = (state: StoreType): MapStatePropsType => {
     return {
         usersPage: state.users,
         pageSize: state.users.pageSize,
