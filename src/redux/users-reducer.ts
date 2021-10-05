@@ -6,6 +6,7 @@ const SET_USERS = "SET_USERS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
 
 export type LocationType = {
     country: string
@@ -31,7 +32,8 @@ let initialState = {
     pageSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingInProgress: [] as Array<string>
 };
 
 export type FollowActionType = ReturnType<typeof follow>
@@ -40,6 +42,7 @@ export type SetUsersType = ReturnType<typeof setUsers>
 export type SetCurrentPageType = ReturnType<typeof setCurrentPage>
 export type SetTotalUsersCountType = ReturnType<typeof setTotalUsersCount>
 export type ToggleIsFetchingType = ReturnType<typeof toggleIsFetching>
+export type ToggleFollowingProgressType = ReturnType<typeof toggleFollowingProgress>
 
 type ActionTypes = FollowActionType
     | UnFollowActionType
@@ -47,6 +50,7 @@ type ActionTypes = FollowActionType
     | SetCurrentPageType
     | SetTotalUsersCountType
     | ToggleIsFetchingType
+    | ToggleFollowingProgressType
 
 
 export type InitialStateType = typeof initialState;
@@ -100,6 +104,13 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
                 ...state,
                 isFetching: action.isFetching
             }
+        case TOGGLE_IS_FOLLOWING_PROGRESS :
+            return {
+                ...state,
+                followingInProgress: action.isFetching
+                    ? [...state.followingInProgress, action.userId]
+                    : state.followingInProgress.filter(id => id !== action.userId)
+            }
         default:
             return state;
     }
@@ -112,3 +123,4 @@ export const setUsers = (users: Array<UserItemType>) => ({type: SET_USERS, users
 export const setCurrentPage = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
 export const setTotalUsersCount = (totalUsersCount: number) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount} as const)
 export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
+export const toggleFollowingProgress = (isFetching: boolean, userId: string) => ({type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId} as const)
