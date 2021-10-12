@@ -1,4 +1,5 @@
-import {addMessageAC, updateMessageAC, UpdateNewPostActionType} from "./dialogs-reducer";
+import {updateMessageAC, UpdateNewPostActionType} from "./dialogs-reducer";
+import {usersAPI} from "../api/api";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
@@ -49,7 +50,7 @@ let initialState: InitialStateType = {
 };
 
 
-export type AddPostActionType = ReturnType<typeof addPostAC>
+export type AddPostActionType = ReturnType<typeof addPost>
 export type UpdateMessageActionType = ReturnType<typeof updateMessageAC>
 export type SetUserProfileType = ReturnType<typeof setUserProfile>
 
@@ -88,6 +89,12 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
     }
 }
 
-export let addPostAC = (text: string) => ({type: ADD_POST, postMessage: text} as const );
-export let setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const );
-export let updateNewPostAC = (value: string) => ({type: UPDATE_NEW_POST_TEXT, newText: value} as const );
+export const addPost = (text: string) => ({type: ADD_POST, postMessage: text} as const );
+export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const );
+export const updateNewPost = (value: string) => ({type: UPDATE_NEW_POST_TEXT, newText: value} as const );
+
+export const getUserProfile = (userId: string) => (dispatch: any) => {
+    usersAPI.getProfile(userId).then(response => {
+        dispatch(setUserProfile(response.data));
+    });
+};

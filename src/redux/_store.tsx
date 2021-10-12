@@ -1,4 +1,4 @@
-import {addPostAC, profileReducer, updateNewPostAC} from "./profile-reducer"
+import {addPost, profileReducer, updateNewPost} from "./profile-reducer"
 import {addMessageAC, dialogsReducer, updateMessageAC} from "./dialogs-reducer";
 import { sidebarReducer } from "./sidebar-reducer";
 // import {followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC} from "./users-reducer";

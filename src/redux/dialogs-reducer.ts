@@ -1,4 +1,4 @@
-import {UpdateMessageActionType, updateNewPostAC} from "./profile-reducer";
+import {UpdateMessageActionType, updateNewPost} from "./profile-reducer";
 
 const ADD_MESSAGE = "ADD-MESSAGE";
 const UPDATE_MESSAGE = "UPDATE-MESSAGE";
@@ -35,7 +35,7 @@ let initialState = {
 
 export type InitialStateType = typeof initialState;
 
-export type UpdateNewPostActionType = ReturnType<typeof updateNewPostAC>
+export type UpdateNewPostActionType = ReturnType<typeof updateNewPost>
 export type AddMessageActionType = ReturnType<typeof addMessageAC>
 type ActionTypes = UpdateMessageActionType
     | AddMessageActionType
