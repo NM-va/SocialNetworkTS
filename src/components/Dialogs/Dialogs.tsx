@@ -12,8 +12,6 @@ export const Dialogs = (props: DialogsPropsType) => {
     
     let messagesElements = props.dialogsPage.messages.map(m => <Message key={m.id} message={m.message} />);
     
-   if (!props.isAuth) return <Redirect to={"/login"} />
-    
     return (
         <div className={styles.dialogs}>
             <div className={styles.dialogsItem}>

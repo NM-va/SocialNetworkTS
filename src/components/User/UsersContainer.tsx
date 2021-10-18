@@ -4,6 +4,7 @@ import {StoreType} from "../../redux/redux-store";
 import {follow, getUsers, InitialStateType, setCurrentPage, unfollow} from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
+import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 
 type MapStatePropsType = {
@@ -93,8 +94,8 @@ let mapStateToProps = (state: StoreType): MapStatePropsType => {
 // };
 
 
-
+let withRedirect = withAuthRedirect(UsersAPIComponent);
 
 export const UsersContainer = connect(mapStateToProps, {
     follow, unfollow, setCurrentPage, getUsers
-})(UsersAPIComponent);
+})(withRedirect);
