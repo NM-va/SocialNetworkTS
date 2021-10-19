@@ -5,6 +5,7 @@ import {follow, getUsers, InitialStateType, setCurrentPage, unfollow} from "../.
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 
 type MapStatePropsType = {
@@ -94,8 +95,9 @@ let mapStateToProps = (state: StoreType): MapStatePropsType => {
 // };
 
 
-let withRedirect = withAuthRedirect(UsersAPIComponent);
-
-export const UsersContainer = connect(mapStateToProps, {
-    follow, unfollow, setCurrentPage, getUsers
-})(withRedirect);
+export const UsersContainer = compose<React.ComponentType>(
+    connect(mapStateToProps, {
+        follow, unfollow, setCurrentPage, getUsers
+    }),
+    withAuthRedirect
+)(UsersAPIComponent);
