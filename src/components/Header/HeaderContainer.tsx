@@ -2,8 +2,7 @@ import React from "react";
 import {Header} from "./Header";
 import {connect} from "react-redux";
 import {StoreType} from "../../redux/redux-store";
-import {getAuthUserData, setAuthUserData} from "../../redux/auth-reducer";
-import {authAPI} from "../../api/api";
+import {getAuthUserData} from "../../redux/auth-reducer";
 
 
 type MapStateToPropsType = {

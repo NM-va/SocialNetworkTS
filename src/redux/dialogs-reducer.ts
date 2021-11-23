@@ -1,7 +1,6 @@
-import {UpdateMessageActionType, updateNewPost} from "./profile-reducer";
+// import {UpdateMessageActionType, updateNewPost} from "./profile-reducer";
 
 const ADD_MESSAGE = "ADD-MESSAGE";
-const UPDATE_MESSAGE = "UPDATE-MESSAGE";
 
 export type MessageType = {
     id: number
@@ -29,16 +28,14 @@ let initialState = {
         {id: 4, message: "Yo"},
         {id: 5, message: "Yo"},
         {id: 6, message: "Yo"}
-    ] as Array<MessageType>,
-    newMessage: ""
+    ] as Array<MessageType>
 };
 
 export type InitialStateType = typeof initialState;
 
-export type UpdateNewPostActionType = ReturnType<typeof updateNewPost>
+// export type UpdateNewPostActionType = ReturnType<typeof updateNewPost>
 export type AddMessageActionType = ReturnType<typeof addMessageAC>
-type ActionTypes = UpdateMessageActionType
-    | AddMessageActionType
+type ActionTypes = AddMessageActionType
 
 export const dialogsReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
 
@@ -50,13 +47,7 @@ export const dialogsReducer = (state: InitialStateType = initialState, action: A
             }
             return {
                 ...state,
-                messages: [...state.messages, newMessageText],
-                newMessage: ""
-            };
-        case UPDATE_MESSAGE:
-            return {
-                ...state,
-                newMessage: action.textMessage
+                messages: [...state.messages, newMessageText]
             };
         default:
             return state
@@ -64,4 +55,4 @@ export const dialogsReducer = (state: InitialStateType = initialState, action: A
 }
 
 export let addMessageAC = (text: string) => ({type: ADD_MESSAGE, textMessage: text} as const);
-export let updateMessageAC = (text: string) => ({type: UPDATE_MESSAGE, textMessage: text} as const);
+// export let updateMessageAC = (text: string) => ({type: UPDATE_MESSAGE, textMessage: text} as const);
