@@ -3,24 +3,31 @@ import styles from "./MyPosts.module.css";
 import {Post} from "./Post/Post";
 import {MyPostsPropsType} from "./MyPostsContainer";
 import {useFormik} from "formik";
+import * as Yup from 'yup';
 
 type PropsType = {
     addPost: (text: string) => void
 }
+
+const SignupSchema = Yup.object().shape({
+    textPost: Yup.string()
+        .max(30, 'Too Long!')
+        .required('Required'),
+});
 
 const MyPostForm = (props: PropsType) => {
     const formik = useFormik({
         initialValues: {
             textPost: ''
         },
-        validate: (values) => {
-        
-        },
+        validationSchema: SignupSchema,
         onSubmit: values => {
             props.addPost(values.textPost)
         }
     });
-    
+
+    const hasError = formik.touched.textPost && formik.errors.textPost;
+
     return (
         <form onSubmit={(e) => {
             formik.handleSubmit(e);
@@ -36,6 +43,7 @@ const MyPostForm = (props: PropsType) => {
                     // id="textPost"
                 >
                 </textarea>
+                { hasError ? <div className={"error-message"}>{formik.errors.textPost}</div> : null}
             </div>
             <button type="submit">Add post</button>
             <button type="button">Remove</button>

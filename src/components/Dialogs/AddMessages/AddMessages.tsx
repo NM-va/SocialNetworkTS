@@ -1,10 +1,17 @@
 import React from "react";
 import styles from "../Dialogs.module.css";
 import {useFormik} from "formik";
+import * as Yup from "yup";
 
 type PropsType = {
     addMessageCallback: (textMessage: string) => void
 }
+
+const SignupSchema = Yup.object().shape({
+    newMessageBody: Yup.string()
+        .max(30, 'Too Long!')
+        .required('Required'),
+});
 
 export const AddMessages = (props: PropsType) => {
     
@@ -12,13 +19,13 @@ export const AddMessages = (props: PropsType) => {
         initialValues: {
             newMessageBody: ""
         },
-        validate: (values) => {
-        
-        },
+        validationSchema: SignupSchema,
         onSubmit: values => {
             props.addMessageCallback(values.newMessageBody);
         }
     })
+
+    const hasError = formik.touched.newMessageBody && formik.errors.newMessageBody;
     
     return (
         <form className={styles.createMessage}
@@ -34,6 +41,7 @@ export const AddMessages = (props: PropsType) => {
                     // onChange={onMessageChangeHandler}
                     // name={"newMessageBody"}
                     className={styles.textField}></textarea>
+                { hasError ? <div className={"error-message"}>{formik.errors.newMessageBody}</div> : null}
             </div>
             <div>
                 <button className={styles.btn} type="submit">Send</button>

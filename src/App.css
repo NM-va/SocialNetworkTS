@@ -21,3 +21,7 @@ img {
 .app-wrapper-content {
     grid-area: content;
 }
+
+.error-message {
+    color: red;
+}
