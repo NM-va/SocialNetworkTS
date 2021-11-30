@@ -1,11 +1,17 @@
-import React from 'react';
-import {useFormik} from 'formik'
-import {useDispatch} from "react-redux";
+import React from "react";
+import {useFormik} from "formik"
+import {connect} from "react-redux";
+import {LoginParamsType} from "../../api/api";
 import {login} from "../../redux/auth-reducer";
+import {Redirect} from "react-router-dom";
+import {StoreType} from "../../redux/redux-store";
 
+type PropsType = {
+    login: (data: LoginParamsType) => void
+}
 
-export const LoginForm = () => {
-    const dispatch = useDispatch();
+export const LoginForm = (props: PropsType) => {
+
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -15,24 +21,23 @@ export const LoginForm = () => {
         validate: (values) => {
         
         },
-        onSubmit: (values) => {
-            alert(JSON.stringify(values));
-            dispatch(login(values))
+        onSubmit: values => {
+            props.login(values);
         }
     });
     
     return (
         <form onSubmit={(e) => {
             formik.handleSubmit(e);
-            formik.resetForm();
+            // formik.resetForm();
         }}>
             <div>
-                <input type="text" placeholder={"email"}
+                <input type="email" placeholder={"email"}
                     {...formik.getFieldProps("email")}
                 />
             </div>
             <div>
-                <input type="password" placeholder={"Password"}
+                <input type="password" placeholder={"password"}
                     {...formik.getFieldProps("password")}
                 />
             </div>
@@ -46,13 +51,31 @@ export const LoginForm = () => {
     )
 }
 
-export const Login = () => {
-    
+type MapStateToProps = {
+    isAuth: boolean
+}
+type MapDispatchPropsType = {
+    login: (data: LoginParamsType) => void
+}
+
+export type MyPostsPropsType = MapStateToProps & MapDispatchPropsType;
+
+const Login:React.FC<MyPostsPropsType> = (props ) => {
+    if (props.isAuth) {
+        return <Redirect to={"/profile"}/>
+    }
     return (
         <div>
             <h1>Login</h1>
-            <LoginForm/>
+            <LoginForm login={props.login}/>
         </div>
 
     )
 }
+const mapStateToProps = (state: StoreType) => {
+    return {
+        isAuth: state.auth.isAuth
+    }
+}
+
+export const LoginContainer = connect(mapStateToProps, {login})(Login);

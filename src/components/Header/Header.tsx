@@ -11,8 +11,9 @@ export const Header = (props: AuthPropsType) => {
                 <img src="https://image.freepik.com/free-vector/linear-flat-ninja-logo-template_23-2149000884.jpg" alt=""/>
             </a>
             <div className={styles.loginBlock}>
-                {props.isAuth ? props.login
-                : <NavLink to={'/login'}>Login</NavLink> }
+                {props.isAuth
+                    ? <div>{props.login} - <button onSubmit={props.logout}>Log out</button></div>
+                    : <NavLink to={'/login'}>Login</NavLink> }
             </div>
         </header>
     )

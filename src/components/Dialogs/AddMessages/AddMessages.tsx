@@ -37,9 +37,6 @@ export const AddMessages = (props: PropsType) => {
             <div>
                 <textarea
                     {...formik.getFieldProps("newMessageBody")}
-                    // value={props.newMessage}
-                    // onChange={onMessageChangeHandler}
-                    // name={"newMessageBody"}
                     className={styles.textField}></textarea>
                 { hasError ? <div className={"error-message"}>{formik.errors.newMessageBody}</div> : null}
             </div>

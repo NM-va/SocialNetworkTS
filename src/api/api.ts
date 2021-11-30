@@ -59,9 +59,12 @@ export const profileAPI = {
 
 export const authAPI = {
     login(data: LoginParamsType) {
-        return instance.post<CommonResponseType>(`auth/login`, {data})
+        return instance.post<CommonResponseType>(`auth/login`, data, {})
     },
     me() {
         return instance.get(`auth/me`)
-    }
+    },
+    logout() {
+        return instance.delete<CommonResponseType>(`auth/login`)
+    },
 }
