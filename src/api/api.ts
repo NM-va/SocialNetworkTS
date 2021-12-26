@@ -20,6 +20,12 @@ export type LoginParamsType = {
     captcha?: boolean
 }
 
+export type FormikErrorType = {
+    email: string
+    password: string
+    rememberMe?: boolean
+}
+
 const instance = axios.create({
     withCredentials: true,
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -43,7 +49,7 @@ export const usersAPI = {
         console.warn('Obsolete method/ Please profileAPI object');
         return profileAPI.getProfile(userId);
     },
-}
+};
 
 export const profileAPI = {
     getProfile(userId: string) {
@@ -55,7 +61,7 @@ export const profileAPI = {
     updateStatus(status: string) {
         return instance.put(`profile/status`, {status});
     }
-}
+};
 
 export const authAPI = {
     login(data: LoginParamsType) {
@@ -67,4 +73,4 @@ export const authAPI = {
     logout() {
         return instance.delete<CommonResponseType>(`auth/login`)
     },
-}
+};

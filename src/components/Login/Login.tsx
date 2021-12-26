@@ -1,7 +1,7 @@
 import React from "react";
 import {useFormik} from "formik"
 import {connect} from "react-redux";
-import {LoginParamsType} from "../../api/api";
+import {FormikErrorType, LoginParamsType} from "../../api/api";
 import {login} from "../../redux/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {StoreType} from "../../redux/redux-store";
@@ -19,7 +19,21 @@ export const LoginForm = (props: PropsType) => {
             rememberMe: false
         },
         validate: (values) => {
-        
+            const errors: Partial<FormikErrorType> = {};
+    
+            if (!values.email) {
+                errors.email = 'Required';
+            } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+                errors.email = 'Invalid email address';
+            }
+    
+            if (!values.password) {
+                errors.password = 'Required';
+            } else if (values.password.length < 3) {
+                errors.password = 'Must be more 3 characters';
+            }
+    
+            return errors;
         },
         onSubmit: values => {
             props.login(values);
@@ -35,11 +49,17 @@ export const LoginForm = (props: PropsType) => {
                 <input type="email" placeholder={"email"}
                     {...formik.getFieldProps("email")}
                 />
+                {formik.touched.email
+                && formik.errors.email
+                && <div style={{color:'red'}}>{formik.errors.email}</div>}
             </div>
             <div>
                 <input type="password" placeholder={"password"}
                     {...formik.getFieldProps("password")}
                 />
+                {formik.touched.password
+                && formik.errors.password
+                && <div style={{color:'red'}}>{formik.errors.password}</div>}
             </div>
             <div>
                 <input type="checkbox" {...formik.getFieldProps("rememberMe")}/>
