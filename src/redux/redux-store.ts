@@ -5,6 +5,7 @@ import {sidebarReducer} from "./sidebar-reducer";
 import {usersReducer} from "./users-reducer";
 import {authReducer} from "./auth-reducer";
 import thunkMiddleware from "redux-thunk";
+import {appReducer} from "./app-reducer";
 
 
 let reducer = combineReducers({
@@ -12,7 +13,8 @@ let reducer = combineReducers({
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
     users: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    app: appReducer
 });
 
 export type StoreType = ReturnType<typeof reducer>;

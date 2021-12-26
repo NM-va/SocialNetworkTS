@@ -1,10 +1,8 @@
 import React from "react";
 import styles from "./Users.module.css"
 import userPhoto from "./../../assets/images/default_avatar.png"
-import {follow, toggleFollowingProgress, UserItemType} from "../../redux/users-reducer";
+import {UserItemType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {usersAPI} from "../../api/api";
 
 type PropsType = {
     users: Array<UserItemType>
