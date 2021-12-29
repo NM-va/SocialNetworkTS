@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import {ProfileType} from "../../../redux/profile-reducer";
 
 type PropsType = {
@@ -11,6 +11,9 @@ export const ProfileStatusWithHooks: React.FC<PropsType> = (props) =>  {
     let [editMode, setEditMode] = useState(false);
     let [status, setStatus] = useState(props.status);
 
+    useEffect(() => {
+        setStatus(props.status);
+    }, [props.status]);
 
     const activateEditMode = () => {
         setEditMode(true)
