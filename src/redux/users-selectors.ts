@@ -1,5 +1,5 @@
 import {StoreType} from "./redux-store";
-import {InitialStateType, UserItemType} from "./users-reducer";
+import {UserItemType} from "./users-reducer";
 
 export const getUsersSelector = (state: StoreType):UserItemType[] => {
     return state.users.users;
