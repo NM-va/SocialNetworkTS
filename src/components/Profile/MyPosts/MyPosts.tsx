@@ -49,12 +49,12 @@ const MyPostForm = (props: PropsType) => {
             <button type="button">Remove</button>
         </form>
     )
-}
+};
 
-export const MyPosts:React.FC<MyPostsPropsType> = (props) => {
-    
+export const MyPosts:React.FC<MyPostsPropsType> = React.memo((props) => {
+
     let postsElements = props.posts.map(post => <Post key={post.id} message={post.message} like={post.likesCount}/>);
-    
+
     return (
         <div className={styles.postsBlock}>
             <h2>My Posts</h2>
@@ -64,4 +64,4 @@ export const MyPosts:React.FC<MyPostsPropsType> = (props) => {
             </div>
         </div>
     )
-}
+});
