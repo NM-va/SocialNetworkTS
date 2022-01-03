@@ -3,6 +3,7 @@ import {profileAPI, usersAPI} from "../api/api";
 const ADD_POST = "ADD-POST";
 const SET_USER_PROFILE = "SET-USER-PROFILE";
 const SET_STATUS = "SET_STATUS";
+const DELETE_POST = "DELETE_POST";
 
 export type PostType = {
     id: number
@@ -52,11 +53,13 @@ let initialState: InitialStateType = {
 export type AddPostActionType = ReturnType<typeof addPost>
 export type SetUserProfileType = ReturnType<typeof setUserProfile>
 export type SetStatusType = ReturnType<typeof setStatus>
+export type DeletePostActionType = ReturnType<typeof deletePost>
 
 
 type ActionTypes = AddPostActionType
     | SetUserProfileType
     | SetStatusType
+    | DeletePostActionType
 
 
 
@@ -79,14 +82,18 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
         case SET_STATUS: {
             return {...state, status: action.status};
         }
+        case DELETE_POST: {
+            return {...state, posts: state.posts.filter(post => post.id !== action.postId)};
+        }
         default:
             return state;
     }
-}
+};
 
 export const addPost = (text: string) => ({type: ADD_POST, postMessage: text} as const );
 export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const );
 export const setStatus = (status: string) => ({type: SET_STATUS, status} as const );
+export const deletePost = (postId: number) => ({type: DELETE_POST, postId} as const );
 
 export const getUserProfile = (userId: string) => (dispatch: any) => {
     usersAPI.getProfile(userId).then(response => {
