@@ -27,11 +27,7 @@ type MapStatePropsType = {
 type MapDispatchPropsType = {
     follow: (userId: string) => void
     unfollow: (userId: string) => void
-    // setUsers: (users:UserItemType[]) => void
     setCurrentPage: (pageNumber: number) => void
-    // setTotalUsersCount: (totalCount: number) => void
-    // toggleIsFetching: (isFetching: boolean) => void
-    // toggleFollowingProgress: (isFetching: boolean, userId: string) => void
     getUsers: (currentPage: number, pageSize: number) => void
 }
 
@@ -41,12 +37,14 @@ export type UsersPagePropsType = MapStatePropsType & MapDispatchPropsType;
 class UsersAPIComponent extends React.Component<UsersPagePropsType, StoreType> {
     
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        const {currentPage, pageSize} = this.props;
+        this.props.getUsers(currentPage, pageSize);
     }
     
     onPageChanged = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber);
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        const {setCurrentPage, getUsers, pageSize} = this.props;
+        setCurrentPage(pageNumber);
+        getUsers(pageNumber, pageSize);
     };
     
     render() {
@@ -66,18 +64,6 @@ class UsersAPIComponent extends React.Component<UsersPagePropsType, StoreType> {
     }
 }
 
-
-// let mapStateToProps = (state: StoreType): MapStatePropsType => {
-//     return {
-//         usersPage: state.users,
-//         pageSize: state.users.pageSize,
-//         totalUsersCount: state.users.totalUsersCount,
-//         currentPage: state.users.currentPage,
-//         isFetching: state.users.isFetching,
-//         followingInProgress: state.users.followingInProgress,
-//     }
-// };
-
 let mapStateToProps = (state: StoreType): MapStatePropsType => {
     return {
         users: getUsersSelector(state),
@@ -88,30 +74,6 @@ let mapStateToProps = (state: StoreType): MapStatePropsType => {
         followingInProgress: getFollowingInProgressSelector(state),
     }
 };
-
-// let mapDispatchToProps = (dispatch: Dispatch) => {
-//     return {
-//         follow: (userId: string) => {
-//             dispatch(follow(userId))
-//         },
-//         unfollow: (userId: string) => {
-//             dispatch(unfollow(userId))
-//         },
-//         setUsers: (users:UserItemType[]) => {
-//             dispatch(setUsers(users))
-//         },
-//         setCurrentPage: (pageNumber: number) => {
-//             dispatch(setCurrentPage(pageNumber))
-//         },
-//         setTotalUsersCount: (totalCount: number) => {
-//             dispatch(setTotalUsersCount(totalCount))
-//         },
-//         toggleIsFetching: (isFetching: boolean) => {
-//             dispatch(toggleIsFetching(isFetching))
-//         }
-//     }
-// };
-
 
 export const UsersContainer = compose<React.ComponentType>(
     connect(mapStateToProps, {

@@ -10,7 +10,7 @@ type PropsType = {
     login: (data: LoginParamsType) => void
 }
 
-export const LoginForm = (props: PropsType) => {
+export const LoginForm = ({login}:PropsType) => {
 
     const formik = useFormik({
         initialValues: {
@@ -36,7 +36,7 @@ export const LoginForm = (props: PropsType) => {
             return errors;
         },
         onSubmit: values => {
-            props.login(values);
+            login(values);
         }
     });
     

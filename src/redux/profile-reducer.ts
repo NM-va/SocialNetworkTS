@@ -95,21 +95,18 @@ export const setUserProfile = (profile: ProfileType) => ({type: SET_USER_PROFILE
 export const setStatus = (status: string) => ({type: SET_STATUS, status} as const );
 export const deletePost = (postId: number) => ({type: DELETE_POST, postId} as const );
 
-export const getUserProfile = (userId: string) => (dispatch: any) => {
-    usersAPI.getProfile(userId).then(response => {
-        dispatch(setUserProfile(response.data));
-    });
+export const getUserProfile = (userId: string) => async (dispatch: any) => {
+    const response = await usersAPI.getProfile(userId);
+    dispatch(setUserProfile(response.data));
 };
 
-export const getUserStatus = (userId: string) => (dispatch: any) => {
-    profileAPI.getStatus(userId).then(response => {
-        dispatch(setStatus(response.data));
-    });
+export const getUserStatus = (userId: string) => async (dispatch: any) => {
+    const response = await profileAPI.getStatus(userId);
+    dispatch(setStatus(response.data));
 };
 
-export const updateStatus = (status: string) => (dispatch: any) => {
-    profileAPI.updateStatus(status).then(response => {
-        if (response.data.resultCode === 0)
+export const updateStatus = (status: string) => async (dispatch: any) => {
+    const response = await profileAPI.updateStatus(status);
+    if (response.data.resultCode === 0)
         dispatch(setStatus(status));
-    });
 };

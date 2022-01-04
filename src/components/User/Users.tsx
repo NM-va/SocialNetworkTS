@@ -1,8 +1,7 @@
 import React from "react";
-import styles from "./Users.module.css"
-import userPhoto from "./../../assets/images/default_avatar.png"
 import {UserItemType} from "../../redux/users-reducer";
-import {NavLink} from "react-router-dom";
+import {Pagination} from "../common/Pagination/Pagination";
+import {User} from "./User";
 
 type PropsType = {
     users: Array<UserItemType>
@@ -14,71 +13,38 @@ type PropsType = {
     unfollow: (userId: string) => void
     isFetching: boolean
     followingInProgress: Array<string>
-    // toggleFollowingProgress: (isFetching: boolean, userId: string) => void
 }
 
-export const Users = (props: PropsType) => {
-    
-    
-    let pagesCount: number = Math.ceil(props.totalUsersCount / props.pageSize);
-    let pages: Array<number> = [];
-    
-    
-    for (let i = 0; i <= pagesCount; i++) {
-        pages.push(i);
-    }
-    
+export const Users = ({
+                          users,
+                          pageSize,
+                          totalUsersCount,
+                          currentPage,
+                          onPageChanged,
+                          follow,
+                          unfollow,
+                          isFetching,
+                          followingInProgress,
+                          ...props
+                      }: PropsType) => {
     
     return (
         <div>
-            <ul className={styles.pagination}>
+            <Pagination totalUsersCount={totalUsersCount}
+                        pageSize={pageSize}
+                        currentPage={currentPage}
+                        onPageChanged={onPageChanged}/>
+            <div>
                 {
-                    pages.map(page => {
-                        return (
-                            <li className={`${props.currentPage === page ? styles.selectedPage : ""} ${styles.pageItem}`}
-                                onClick={(e) => {
-                                    props.onPageChanged(page)
-                                }}
-                            >{page}</li>
-                        )
-                    })
+                    users.map(user => (
+                        <User key={user.id}
+                              user={user}
+                              follow={follow}
+                              unfollow={unfollow}
+                              followingInProgress={followingInProgress}/>
+                    ))
                 }
-            </ul>
-            
-            {
-                props.users.map(user => (
-                    <div key={user.id}>
-                        <div>
-                            <div className={styles.userAvatar}>
-                                <NavLink to={"/profile/" + user.id}>
-                                    <img src={user.photos.small != null ? user.photos.small : userPhoto} alt=""/>
-                                </NavLink>
-                            </div>
-                            <div>
-                                {
-                                    user.followed ?
-                                        <button disabled={props.followingInProgress.some((id: string) => id === user.id)} type="button"
-                                                onClick={() => {props.unfollow(user.id)}}>
-                                            Unfollow</button>
-                                        : <button disabled={props.followingInProgress.some((id: string) => id === user.id)} type="button"
-                                                  onClick={() => {props.follow(user.id)}}>
-                                            Follow</button>
-                                }
-                            </div>
-                        </div>
-                        <div>
-                            <div>
-                                {user.name}
-                                <span>{user.status}</span>
-                            </div>
-                            <div>
-                                {"user.location.country"}
-                                <span>{"user.location.city"}</span>
-                            </div>
-                        </div>
-                    </div>
-                ))
-            }
+            </div>
         </div>
     )
 }

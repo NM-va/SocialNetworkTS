@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import {BrowserRouter, Route, withRouter} from "react-router-dom";
+import {Route, withRouter} from "react-router-dom";
 import {Navbar} from "./components/Navbar/Navbar";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {News} from "./components/News/News";

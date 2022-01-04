@@ -10,18 +10,22 @@ type PropsType = {
     updateStatus: (status: string) => void
 }
 
-export const ProfileInfo = (props: PropsType) => {
-    if(!props.profile) {
+export const ProfileInfo = ({
+                                profile,
+                                status,
+                                updateStatus,
+                                ...props
+                            }: PropsType) => {
+    if(!profile) {
         return <Preloader />
     }
     return (
         <div className={styles.content}>
-            {/*<div><img src="https://wallpaperaccess.com/full/1682070.jpg" alt=""/></div>*/}
             <div className={styles.descriptionBlock}>
                 <div className={styles.avatar}>
-                    <img src={props.profile.photos.large} alt=""/>
+                    <img src={profile.photos.large} alt=""/>
                 </div>
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
                 <div className={styles.description}>Description</div>
             </div>
         </div>

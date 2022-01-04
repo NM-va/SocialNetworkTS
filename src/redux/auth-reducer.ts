@@ -1,6 +1,8 @@
 import {authAPI, LoginParamsType} from "../api/api";
+import {StoreType} from "./redux-store";
+import {ThunkAction} from "redux-thunk";
 
-const SET_USER_DATA = "SET_USER_DATA";
+const SET_USER_DATA = "samurai-network/auth/SET_USER_DATA";
 
 // let initialState = {
 //     userId: null,
@@ -27,6 +29,7 @@ let initialState:InitialStateType = {
 
 export type SetAuthUserDataType = ReturnType<typeof setAuthUserData>
 type ActionTypes = SetAuthUserDataType
+type ThunkType = ThunkAction<void, StoreType, unknown, ActionTypes>
 
 export const authReducer = (state: InitialStateType = initialState, action: ActionTypes): InitialStateType => {
 
@@ -46,24 +49,20 @@ export const setAuthUserData = (userId: string | null, email: string | null, log
     payload: {userId, email, login, isAuth}} as const);
 
 //thunks
-export const getAuthUserData = () => (dispatch: any) => {
-    return authAPI.me()
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                let {id, login, email} = response.data.data;
-                dispatch(setAuthUserData(id, login, email, true));
-            }
-        });
-}
+export const getAuthUserData = ():ThunkType => async (dispatch: any) => {
+    const response = await authAPI.me();
+    if (response.data.resultCode === 0) {
+        let {id, login, email} = response.data.data;
+        dispatch(setAuthUserData(id, login, email, true));
+    }
+};
 
-export const login = (data: LoginParamsType) => (dispatch: any) => {
-    authAPI.login(data)
-        .then(response => {
-            if (response.data.resultCode === 0) {
-                dispatch(getAuthUserData());
-            }
-        });
-}
+export const login = (data: LoginParamsType) => async (dispatch: any) => {
+    const response = await authAPI.login(data);
+    if (response.data.resultCode === 0) {
+        dispatch(getAuthUserData());
+    }
+};
 
 export const logout = () => (dispatch: any) => {
     authAPI.logout()
@@ -72,4 +71,4 @@ export const logout = () => (dispatch: any) => {
                 dispatch(setAuthUserData(null, null, null, false));
             }
         });
-}
+};
