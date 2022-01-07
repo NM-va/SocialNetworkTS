@@ -52,7 +52,7 @@ class UsersAPIComponent extends React.Component<UsersPagePropsType, StoreType> {
             {this.props.isFetching ? <Preloader /> : null}
             <Users users={this.props.users}
                    pageSize={this.props.pageSize}
-                   totalUsersCount={this.props.totalUsersCount}
+                   totalItemsCount={this.props.totalUsersCount}
                    currentPage={this.props.currentPage}
                    onPageChanged={this.onPageChanged}
                    follow={this.props.follow}
