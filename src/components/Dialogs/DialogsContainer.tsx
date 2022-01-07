@@ -21,7 +21,7 @@ let mapStateToProps = (state: StoreType) => {
     return {
         dialogsPage: state.dialogsPage
     }
-}
+};
 
 let mapDispatchToProps = (dispatch: Dispatch) => {
     return {
@@ -32,7 +32,9 @@ let mapDispatchToProps = (dispatch: Dispatch) => {
 }
 
 
-export const DialogsContainer = compose<ComponentType>(
+const DialogsContainer = compose<ComponentType>(
     connect(mapStateToProps, mapDispatchToProps),
     withAuthRedirect
 )(Dialogs);
+
+export default DialogsContainer;

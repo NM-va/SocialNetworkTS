@@ -9,7 +9,7 @@ type MapStatePropsType = {
 
 const mapStateToPropsForRedirect = (state: StoreType): MapStatePropsType => {
     return {isAuth: state.auth.isAuth}
-}
+};
 
 export function withAuthRedirect<T>(Component: ComponentType<T>) {
     
@@ -18,7 +18,7 @@ export function withAuthRedirect<T>(Component: ComponentType<T>) {
         
         if (!isAuth) return <Redirect to={"/login"}/>
         return <Component {...restProps as T}/>
-    }
+    };
     
     
     let ConnectedAuthRedirectComponent = connect(mapStateToPropsForRedirect)(RedirectComponent);

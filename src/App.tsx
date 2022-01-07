@@ -1,13 +1,11 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./App.css";
 import {Route, withRouter} from "react-router-dom";
 import {Navbar} from "./components/Navbar/Navbar";
-import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {UsersContainer} from "./components/User/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {LoginContainer} from "./components/Login/Login";
 import {connect} from "react-redux";
@@ -15,6 +13,10 @@ import {StoreType} from "./redux/redux-store";
 import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
 import {Preloader} from "./components/common/Preloader/Preloader";
+import {WithSuspense} from "./hoc/withSuspense";
+
+const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
+const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
 
 type MapDispatchToProps = {
     initializeApp: () => void
@@ -41,8 +43,8 @@ class App extends React.Component<InitializePropsType, StoreType> {
                 <HeaderContainer/>
                 <Navbar/>
                 <div className="app-wrapper-content">
-                    <Route path='/dialogs' render={() => <DialogsContainer/>}/>
-                    <Route path='/profile/:userId?' render={() => <ProfileContainer/>}/>
+                    <Route path='/dialogs' render={WithSuspense(DialogsContainer)}/>
+                    <Route path='/profile/:userId?' render={WithSuspense(ProfileContainer)}/>
                     <Route path='/users' render={() => <UsersContainer/>}/>
                     <Route path='/news' render={() => <News/>}/>
                     <Route path='/music' render={() => <Music/>}/>
