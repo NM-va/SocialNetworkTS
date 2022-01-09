@@ -60,6 +60,15 @@ export const profileAPI = {
     },
     updateStatus(status: string) {
         return instance.put(`profile/status`, {status});
+    },
+    savePhoto(photoFIle: any) {
+        const formData = new FormData();
+        formData.append("image", photoFIle);
+        return instance.put(`profile/photo`, formData,{
+            headers: {
+                "Content-Type" : "multipart/form-data"
+            }
+        });
     }
 };
 
