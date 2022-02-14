@@ -1,5 +1,6 @@
 import axios, {AxiosResponse} from "axios";
 import {UserItemType} from "../redux/users-reducer";
+import {ProfileDataFormType} from "../components/Profile/ProfileInfo/ProfileDataForm";
 
 type GetUsersResponseType = {
     items: Array<UserItemType>
@@ -69,7 +70,10 @@ export const profileAPI = {
                 "Content-Type" : "multipart/form-data"
             }
         });
-    }
+    },
+    saveProfile(profile: ProfileDataFormType) {
+        return instance.put(`profile`, profile);
+    },
 };
 
 export const authAPI = {

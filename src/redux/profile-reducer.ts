@@ -1,4 +1,5 @@
 import {profileAPI, usersAPI} from "../api/api";
+import {ProfileDataFormType} from "../components/Profile/ProfileInfo/ProfileDataForm";
 
 const ADD_POST = "ADD-POST";
 const SET_USER_PROFILE = "SET-USER-PROFILE";
@@ -12,7 +13,7 @@ export type PostType = {
     likesCount: number
 }
 
-export type ContactsType={
+export type ContactsType = {
     github: string
     vk: string
     facebook: string
@@ -124,12 +125,26 @@ export const getUserStatus = (userId: string) => async (dispatch: any) => {
 
 export const updateStatus = (status: string) => async (dispatch: any) => {
     const response = await profileAPI.updateStatus(status);
-    if (response.data.resultCode === 0)
+    if (response.data.resultCode === 0) {
         dispatch(setStatus(status));
+    }
 };
 
 export const savePhoto = (photoFile: any) => async (dispatch: any) => {
     const response = await profileAPI.savePhoto(photoFile);
-    if (response.data.resultCode === 0)
+    if (response.data.resultCode === 0) {
         dispatch(savePhotoAccess(response.data.data.photos));
+    }
+};
+
+export const saveProfile = (profile: ProfileDataFormType) => async (dispatch: any, getState: any) => {
+    const userId = getState().auth.userId;
+    try {
+        const response = await profileAPI.saveProfile(profile);
+        if (response.data.resultCode === 0) {
+            dispatch(getUserProfile(userId));
+        }
+    } catch (err) {
+        console.log('some error')
+    }
 };
