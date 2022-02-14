@@ -69,7 +69,7 @@ export const LoginForm = ({login}:PropsType) => {
             </div>
         </form>
     )
-}
+};
 
 type MapStateToProps = {
     isAuth: boolean
@@ -91,11 +91,11 @@ const Login:React.FC<MyPostsPropsType> = (props ) => {
         </div>
 
     )
-}
+};
 const mapStateToProps = (state: StoreType) => {
     return {
         isAuth: state.auth.isAuth
     }
-}
+};
 
 export const LoginContainer = connect(mapStateToProps, {login})(Login);

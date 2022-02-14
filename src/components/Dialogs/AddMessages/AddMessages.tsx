@@ -23,7 +23,7 @@ export const AddMessages = (props: PropsType) => {
         onSubmit: values => {
             props.addMessageCallback(values.newMessageBody);
         }
-    })
+    });
 
     const hasError = formik.touched.newMessageBody && formik.errors.newMessageBody;
     
