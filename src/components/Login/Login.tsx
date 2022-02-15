@@ -8,15 +8,17 @@ import {StoreType} from "../../redux/redux-store";
 
 type PropsType = {
     login: (data: LoginParamsType) => void
+    captcha?: string | null
 }
 
-export const LoginForm = ({login}:PropsType) => {
+export const LoginForm = ({login, captcha}:PropsType) => {
 
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
-            rememberMe: false
+            rememberMe: false,
+            captcha: ''
         },
         validate: (values) => {
             const errors: Partial<FormikErrorType> = {};
@@ -64,6 +66,10 @@ export const LoginForm = ({login}:PropsType) => {
             <div>
                 <input type="checkbox" {...formik.getFieldProps("rememberMe")}/>
             </div>
+            {captcha && <img src={captcha}/>}
+            {captcha &&  <input type="text" placeholder={"symbols from image"}
+                                   {...formik.getFieldProps("captcha")}
+            />}
             <div>
                 <button type="submit">Login</button>
             </div>
@@ -73,6 +79,7 @@ export const LoginForm = ({login}:PropsType) => {
 
 type MapStateToProps = {
     isAuth: boolean
+    captchaUrl?: string | null
 }
 type MapDispatchPropsType = {
     login: (data: LoginParamsType) => void
@@ -80,22 +87,21 @@ type MapDispatchPropsType = {
 
 export type MyPostsPropsType = MapStateToProps & MapDispatchPropsType;
 
-const Login:React.FC<MyPostsPropsType> = (props ) => {
-    if (props.isAuth) {
+const Login:React.FC<MyPostsPropsType> = ({isAuth, login, captchaUrl} ) => {
+    if (isAuth) {
         return <Redirect to={"/profile"}/>
     }
     return (
         <div>
             <h1>Login</h1>
-            <LoginForm login={props.login}/>
+            <LoginForm login={login} captcha={captchaUrl}/>
         </div>
 
     )
 };
-const mapStateToProps = (state: StoreType) => {
-    return {
-        isAuth: state.auth.isAuth
-    }
-};
+const mapStateToProps = (state: StoreType) => ({
+    isAuth: state.auth.isAuth,
+    captchaUrl: state.auth.captchaUrl
+});
 
 export const LoginContainer = connect(mapStateToProps, {login})(Login);

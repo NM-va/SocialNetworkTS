@@ -8,6 +8,10 @@ type GetUsersResponseType = {
     error: string
 }
 
+type GetCaptchaResponseType = {
+    url: string
+}
+
 type CommonResponseType = {
     resultCode: number
     messages: Array<string>
@@ -18,7 +22,7 @@ export type LoginParamsType = {
     email: string
     password: string
     rememberMe: boolean
-    captcha?: boolean
+    captcha?: string
 }
 
 export type FormikErrorType = {
@@ -85,5 +89,11 @@ export const authAPI = {
     },
     logout() {
         return instance.delete<CommonResponseType>(`auth/login`)
+    },
+};
+
+export const securityAPI = {
+    getCaptcha() {
+        return instance.get<GetCaptchaResponseType>(`security/get-captcha-url`)
     },
 };
