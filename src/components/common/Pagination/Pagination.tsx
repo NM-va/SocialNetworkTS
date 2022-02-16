@@ -1,5 +1,8 @@
 import React, {useState} from "react";
-import styles from "./Pagination.module.css"
+import styles from "./Pagination.module.css";
+import classNames from 'classnames/bind';
+let cn = classNames.bind(styles);
+
 
 type PropsType = {
     pageSize: number
@@ -40,7 +43,7 @@ export const Pagination = ({
             {
                 pages.map(page => {
                     return (
-                        <li className={`${currentPage === page ? styles.selectedPage : ""} ${styles.pageItem}`}
+                        <li className={cn({[styles.selectedPage]: currentPage === page}, styles.pageItem)}
                             key={page}
                             onClick={(e) => {
                                 onPageChanged(page)
