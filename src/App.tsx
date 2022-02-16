@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import "./App.css";
-import {Route, withRouter} from "react-router-dom";
+import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {Navbar} from "./components/Navbar/Navbar";
 import {News} from "./components/News/News";
 import {Music} from "./components/Music/Music";
@@ -29,8 +29,16 @@ type MapStateToPropsType = {
 export type InitializePropsType = MapStateToPropsType & MapDispatchToProps
 
 class App extends React.Component<InitializePropsType, StoreType> {
+    catchAllUnhandeledErrors = () => {
+        alert('Some error occured');
+        console.error(PromiseRejectionEvent);
+    };
     componentDidMount() {
         this.props.initializeApp();
+        window.addEventListener('unhadledrejection', this.catchAllUnhandeledErrors)
+    }
+    componentWillUnmount() {
+        window.removeEventListener('unhadledrejection', this.catchAllUnhandeledErrors)
     }
 
     render() {
@@ -43,13 +51,16 @@ class App extends React.Component<InitializePropsType, StoreType> {
                 <HeaderContainer/>
                 <Navbar/>
                 <div className="app-wrapper-content">
-                    <Route path='/dialogs' render={WithSuspense(DialogsContainer)}/>
-                    <Route path='/profile/:userId?' render={WithSuspense(ProfileContainer)}/>
-                    <Route path='/users' render={() => <UsersContainer/>}/>
-                    <Route path='/news' render={() => <News/>}/>
-                    <Route path='/music' render={() => <Music/>}/>
-                    <Route path='/settings' render={() => <Settings/>}/>
-                    <Route path='/login' render={() => <LoginContainer/>}/>
+                    <Switch>
+                        <Route exact path='/' render={() => <Redirect to={'/profile'}/>}/>
+                        <Route path='/dialogs' render={WithSuspense(DialogsContainer)}/>
+                        <Route path='/profile/:userId?' render={WithSuspense(ProfileContainer)}/>
+                        <Route path='/users' render={() => <UsersContainer/>}/>
+                        <Route path='/news' render={() => <News/>}/>
+                        <Route path='/music' render={() => <Music/>}/>
+                        <Route path='/settings' render={() => <Settings/>}/>
+                        <Route path='/login' render={() => <LoginContainer/>}/>
+                    </Switch>
                 </div>
             </div>
         );
