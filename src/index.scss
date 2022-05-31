@@ -1,17 +1,16 @@
 @use  "~bootstrap/scss/bootstrap";
 @use "~bootstrap-icons/font/bootstrap-icons.scss";
 @use '~sanitize.css' as sanitize;
+@use './scss/variables' as vars;
 
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;
-  //color: #003101;
-  color: #444444;
+  color: vars.$text_color;
   line-height: 1.7;
   font-size: 14px;
   font-weight: 400;
-  background-color: #ebf5ed;
-
+  background-color: vars.$body_bg;
 }
 
 code {

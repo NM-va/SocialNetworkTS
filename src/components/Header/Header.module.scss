@@ -19,7 +19,7 @@
 
 .headerTop {
     box-shadow: 0 1px 20px 0 rgba(85, 85, 85, 0.25);
-    background-color: #fff;
+    background-color: vars.$second_bg;
 }
 
 .headerLogo {
@@ -47,6 +47,7 @@
         border-radius: 0 0 2px 2px;
         box-shadow: vars.$box-shadow2;
     }
+
     .profileHead {
         padding: 20px;
 
@@ -79,7 +80,7 @@
     .profileBody {
         ul {
             padding: 20px 0;
-            border-top: 1px solid #dddddd;
+            border-top: 1px solid vars.$border_color;
 
             li {
                 line-height: 1;

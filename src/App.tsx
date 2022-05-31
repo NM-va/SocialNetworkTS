@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, {CSSProperties, Suspense } from "react";
 import "./App.scss";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {Navbar} from "./components/Navbar/Navbar";
@@ -14,6 +14,8 @@ import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
 import {Preloader} from "./components/common/Preloader/Preloader";
 import {WithSuspense} from "./hoc/withSuspense";
+import headerMainImg from "./assets/images/summer.jpg";
+import {FriendsContainer} from "./components/Friends/FriendsContainer";
 
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
@@ -27,6 +29,10 @@ type MapStateToPropsType = {
 }
 
 export type InitializePropsType = MapStateToPropsType & MapDispatchToProps
+
+const headerMainBg: CSSProperties = {
+    backgroundImage: `url("${headerMainImg}")`
+};
 
 class App extends React.Component<InitializePropsType, StoreType> {
     catchAllUnhandeledErrors = () => {
@@ -49,19 +55,42 @@ class App extends React.Component<InitializePropsType, StoreType> {
         return (
             <div className='app-wrapper'>
                 <HeaderContainer/>
-                <Navbar/>
-                <div className="app-wrapper-content">
-                    <Switch>
-                        <Route exact path='/' render={() => <Redirect to={'/profile'}/>}/>
-                        <Route path='/dialogs' render={WithSuspense(DialogsContainer)}/>
-                        <Route path='/profile/:userId?' render={WithSuspense(ProfileContainer)}/>
-                        <Route path='/users' render={() => <UsersContainer/>}/>
-                        <Route path='/news' render={() => <News/>}/>
-                        <Route path='/music' render={() => <Music/>}/>
-                        <Route path='/settings' render={() => <Settings/>}/>
-                        <Route path='/login' render={() => <LoginContainer/>}/>
-                    </Switch>
-                </div>
+                <main>
+                    <div className="headerMain">
+                        <div className="headerTopMain" style={headerMainBg}>
+                            <div className={"userAvatar"}>
+                                <div className={"userAvatarImg"}>
+                                    <img src="" alt=""/>
+                                </div>
+                                <h5>Madison Howard</h5>
+                            </div>
+                        </div>
+                        <Navbar/>
+                    </div>
+                    <section className="content">
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-md-3">
+                                    <aside>
+                                        <FriendsContainer />
+                                    </aside>
+                                </div>
+                                <div className="col-md-9">
+                                    <Switch>
+                                        <Route exact path='/' render={() => <Redirect to={'/profile'}/>}/>
+                                        <Route path='/dialogs' render={WithSuspense(DialogsContainer)}/>
+                                        <Route path='/profile/:userId?' render={WithSuspense(ProfileContainer)}/>
+                                        <Route path='/users' render={() => <UsersContainer/>}/>
+                                        <Route path='/news' render={() => <News/>}/>
+                                        <Route path='/music' render={() => <Music/>}/>
+                                        <Route path='/settings' render={() => <Settings/>}/>
+                                        <Route path='/login' render={() => <LoginContainer/>}/>
+                                    </Switch>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
             </div>
         );
     }

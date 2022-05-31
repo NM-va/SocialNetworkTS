@@ -1,27 +1,42 @@
 /*my color scheme*/
 /*https://javier.xyz/cohesive-colors/?src=ebf5ed,cfe1c9,aec5a9,5a9d2c,003101&overlay=FF9C00&intensity=0*/
 
+@use './scss/variables' as vars;
 
 
-img {
-    max-width: 100%;
+.headerMain{
+    position: relative;
 }
 
-.app-wrapper {
-    display: grid;
-    grid-template-areas:
-    "header header"
-    "nav content";
-    grid-template-rows: 60px 1fr;
-    grid-template-columns: 20% 1fr;
-    min-height: 100vh;
-    background-color: #ebf5ed;
-    max-width: 1400px;
-    margin: 0 auto;
+.headerTopMain {
+    min-height: 300px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
 }
 
-.app-wrapper-content {
-    grid-area: content;
+.userAvatar {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+    bottom: 0;
+    text-align: center;
+    max-width: 200px;
+    z-index: 4;
+}
+
+.userAvatarImg {
+    border-radius: 100%;
+    border: 6px solid vars.$second_bg;
+    margin: 0 auto 15px;
+    overflow: hidden;
+    width: 132px;
+    height: 132px;
+    background-color: vars.$main_bg;
+}
+
+.content {
+    margin-top: 20px;
 }
 
 .error-message {

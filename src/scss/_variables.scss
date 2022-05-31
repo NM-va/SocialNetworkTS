@@ -4,13 +4,14 @@ $lighter_green: #cfe1c9;
 $light_green: #aec5a9;
 $green: #5a9d2c;
 $dark_green: #003101;
-$dark_grey: #333;
+$lighter_grey: #ddd;
 $light_grey: #666;
 $grey_tr: rgba(85, 85, 85, 0.25);
+$dark_grey: #333;
 $black: #333;
 
 
-$body_color: $lightest_green;
+$body_bg: $lightest_green;
 $main_bg: $lightest_green;
 $second_bg: $white;
 $bg_tr: transparent;
@@ -18,6 +19,8 @@ $bg_tr: transparent;
 $text_color: $black;
 $text_accent_color: $green;
 $text_muted_color: $light_grey;
+
+$border_color: $lighter_grey;
 
 $box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.2);
 $box-shadow2: 0 1px 15px 0 rgba(51, 51, 51, 0.2);
