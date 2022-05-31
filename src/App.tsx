@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import "./App.css";
+import "./App.scss";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {Navbar} from "./components/Navbar/Navbar";
 import {News} from "./components/News/News";

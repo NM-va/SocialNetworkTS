@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./ProfileInfo.module.css";
+import styles from "./ProfileInfo.module.scss";
 import {useFormik} from "formik";
 import * as Yup from "yup";
 import {ContactsType, ProfileType} from "../../../redux/profile-reducer";

@@ -1,5 +1,5 @@
 import React, {ChangeEvent, useState} from "react";
-import styles from './ProfileInfo.module.css';
+import styles from './ProfileInfo.module.scss';
 import {ProfileType} from "../../../redux/profile-reducer";
 import {Preloader} from "../../common/Preloader/Preloader";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";

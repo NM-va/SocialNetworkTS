@@ -1,0 +1,120 @@
+@use '../../scss/variables' as vars;
+
+//.header {
+//    grid-area: header;
+//    background-color: #003101;
+//}
+
+
+
+//.loginBlock {
+//    float: right;
+//    color: #fff;
+//}
+//
+//.loginBlock a {
+//    color: #fff;
+//}
+
+
+.headerTop {
+    box-shadow: 0 1px 20px 0 rgba(85, 85, 85, 0.25);
+    background-color: #fff;
+}
+
+.headerLogo {
+    display: inline-block;
+    width: 70px;
+    height: 50px;
+}
+
+.profileSettingBox {
+    position: relative;
+
+    .profileThumbSmall {
+        a {
+            display: block;
+        }
+    }
+
+    .profileDropdown {
+        top: 100%;
+        right: 0;
+        width: 250px;
+        background-color: vars.$second_bg;
+        position: absolute;
+        z-index: 1;
+        border-radius: 0 0 2px 2px;
+        box-shadow: vars.$box-shadow2;
+    }
+    .profileHead {
+        padding: 20px;
+
+        .userName {
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1;
+            padding-bottom: 7px;
+
+            a {
+                color: vars.$text_color;
+
+                &:hover {
+                    color: vars.$text_accent_color;
+                }
+            }
+        }
+
+        .userMail {
+            font-size: 13px;
+            color: vars.$text_muted_color;
+            display: block;
+
+            &:hover {
+                color: vars.$text_accent_color;
+            }
+        }
+    }
+
+    .profileBody {
+        ul {
+            padding: 20px 0;
+            border-top: 1px solid #dddddd;
+
+            li {
+                line-height: 1;
+                margin-bottom: 15px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                a {
+                    color: vars.$text_muted_color;
+                    padding: 0 20px;
+
+                    i {
+                        font-size: 16px;
+                        padding-right: 8px;
+                    }
+                }
+
+                &:hover {
+                    a {
+                        color: vars.$text_accent_color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+.sticky {
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 9;
+    box-shadow: vars.$box-shadow;
+}
