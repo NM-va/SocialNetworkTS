@@ -21,10 +21,9 @@ export const Header = (props: AuthPropsType) => {
                             <div className="d-flex align-items-center justify-content-end">
                                 <div className={styles.profileSettingBox}>
                                     {props.isAuth
-                                        ? <HeaderProfileSettings login={props.login} logout={props.logout}/>
+                                        ? <HeaderProfileSettings email={props.email} login={props.login} profile={props.profile}  logout={props.logout}/>
                                         : <NavLink to={'/login'}>Login</NavLink>
                                     }
-
                                 </div>
                             </div>
                         </div>

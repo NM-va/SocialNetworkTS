@@ -1,10 +1,14 @@
 import React, {useState} from "react";
 import styles from "../Header.module.scss";
 import {NavLink} from "react-router-dom";
+import userPhoto from "../../../assets/images/default_avatar.png";
+import {ProfileType} from "../../../redux/profile-reducer";
 
 export type PropsType = {
     login: string | null
+    email: string | null
     logout: () => void
+    profile: ProfileType | null
 }
 
 export const HeaderProfileSettings = (props: PropsType) => {
@@ -14,19 +18,19 @@ export const HeaderProfileSettings = (props: PropsType) => {
     };
 
     return (
-        <div className={styles.profileThumbSmall}>
+        <>
             <button className={styles.profileTrigger} onClick={toggleDropdown}>
-                <img src="assets/images/profile/profile-35x35-1.jpg" alt="profile picture"/>
+                <img className={styles.smallUserAvatar} src={props.profile?.photos.large || userPhoto} alt="profile picture"/>
             </button>
             {isOpenDropdown &&
                 <div className={styles.profileDropdown}>
                     <div className={styles.profileHead}>
                         <h6 className={styles.userName}>
                             <NavLink to="/profile" activeClassName={styles.activeLink}  className={styles.userName}>
-                                Madison Howard
+                                {props.login}
                             </NavLink>
                         </h6>
-                        <NavLink to="/profile" activeClassName={styles.activeLink} className={styles.userMail}>{props.login}</NavLink>
+                        <NavLink to="/profile" activeClassName={styles.activeLink} className={styles.userMail}>{props.email}</NavLink>
                     </div>
                     <div className={styles.profileBody}>
                         <ul>
@@ -40,6 +44,6 @@ export const HeaderProfileSettings = (props: PropsType) => {
                     </div>
                 </div>
             }
-        </div>
+        </>
     )
 };
