@@ -1,7 +1,13 @@
-.descriptionBlock {
-    padding: 20px;
+@use './../../../scss/variables' as vars;
+
+.userAvatarImg {
+    width: 200px;
+    margin-bottom: 1.25rem;
 }
 
-.mainPhoto {
-    max-width: 200px;
+.profileInfo {
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    border: 1px solid vars.$border_color;
+    border-radius: .25rem;
 }

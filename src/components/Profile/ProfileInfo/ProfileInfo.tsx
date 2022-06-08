@@ -41,50 +41,72 @@ export const ProfileInfo = ({
       setEditMode(editModeValue);
     };
 
+    const goToEditMode = () => {setEditMode(true)};
+
     return (
-        <div className={styles.content}>
-            <div className={styles.descriptionBlock}>
-                <div className={styles.avatar}>
-                    <img src={profile.photos.large || userPhoto} className={styles.mainPhoto} alt=""/>
-                    {isOwner && <input type="file" onChange={onMainPhotoSelected}/> }
+        <div className="card cardItem">
+            <h4 className="titleInfo">Personal information</h4>
+            <div className="row mb-4">
+                <div className="col-md-4">
+                    <div className={styles.userAvatarImg}>
+                        <img src={profile.photos.large || userPhoto} alt=""/>
+                    </div>
+                    {isOwner && <label className="btn chooseFile"><input type="file" onChange={onMainPhotoSelected}/>Choose file</label> }
                 </div>
+                <div className="col-md-8">
+                    <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+                </div>
+            </div>
+            <div className={styles.profileInfo}>
+                <div className={`titleBox titleInfo`}>
+                        <h4 className="">Profile info</h4>
+                    {isOwner && !editMode && <button onClick={goToEditMode} className="btn btnEdit">Edit info <i className="bi bi-pencil"></i></button> }
+                    </div>
+
                 {
                     editMode
                         ? <ProfileDataForm  profile={profile} saveProfile={saveProfile} setEditMode={setEditModeCallback}/>
-                        : <ProfileData profile={profile} isOwner={isOwner} goToEditMode={() => {setEditMode(true)}}/>
+                        : <ProfileData profile={profile}/>
                 }
-
-                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
             </div>
+
         </div>
     )
 };
 
 type ProfileDataPropsType = {
     profile: ProfileType
-    isOwner: boolean
-    goToEditMode: () => void
 }
 
-const ProfileData:React.FC<ProfileDataPropsType> = ({profile, isOwner, goToEditMode}) => {
+const ProfileData:React.FC<ProfileDataPropsType> = ({profile}) => {
     const getKeys = Object.keys as <T extends object>(obj: T) => Array<keyof T>;
 
     return (
-        <div className={styles.description}>
-            {isOwner && <div><button onClick={goToEditMode}>Edit</button></div> }
-
-            <div><span className="textBold">Full name:</span> {profile?.fullName}</div>
-            <div><span className="textBold">Looking for a job:</span> {profile?.lookingForAJob ? "yes" : "no"}</div>
+        <>
+            <div className="row mb-2">
+                <div className="col-md-4 fw-bold">Full name:</div>
+                <div className="col-md-8">{profile?.fullName}</div>
+            </div>
+            <div className="row mb-2">
+                <div className="col-md-4 fw-bold">Looking for a job:</div>
+                <div className="col-md-8">{profile?.lookingForAJob ? "yes" : "no"}</div>
+            </div>
             {profile?.lookingForAJob &&
-            <div><span className="textBold">My professional skills:</span> {profile?.lookingForAJobDescription}</div>}
-            <div><span className="textBold">About me:</span> {profile?.aboutMe}</div>
-            <div>
-                <span className="textBold">Contacts:</span>
+            <div className="row mb-2">
+                <div className="col-md-4 fw-bold">My professional skills:</div>
+                <div className="col-md-8">{profile?.lookingForAJobDescription}</div>
+            </div>}
+            <div className="row mb-2">
+                <div className="col-md-4 fw-bold">About me:</div>
+                <div className="col-md-8">{profile?.aboutMe}</div>
+            </div>
+            <div className="mt-4">
+                <h5 className="mb-3">Contacts:</h5>
                 {getKeys(profile?.contacts).map((key) => {
                     return <Contact key={key} contactTitle={key} contactValue={profile?.contacts[key]}/>
                 })}
             </div>
-        </div>
+        </>
     )
 };
 
@@ -96,6 +118,9 @@ type ContactsPropsType = {
 
 export const Contact:React.FC<ContactsPropsType> = ({contactTitle, contactValue}) => {
     return (
-        <div><span className="textBold">{contactTitle}:</span> {contactValue}</div>
+        <div className="row mb-2">
+            <div className="col-md-4 fw-bold">{contactTitle}:</div>
+            <div className="col-md-8">{contactValue}</div>
+        </div>
     )
 };

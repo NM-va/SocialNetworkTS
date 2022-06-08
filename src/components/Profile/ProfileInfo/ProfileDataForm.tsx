@@ -53,44 +53,52 @@ export const ProfileDataForm: React.FC<ProfileDataFromPropsType> = ({profile, sa
     });
 
     const getKeys = Object.keys as <T extends object>(obj: T) => Array<keyof T>;
-
     return (
         <form className={styles.description} onSubmit={(e) => {
-
             formik.handleSubmit(e);
         }}>
-            <div><button>Save</button></div>
-            <div>
-                <label htmlFor="fullName"  className="textBold">FullName</label>
-                <input type="text" id="fullName" placeholder="fullName" {...formik.getFieldProps("fullName")}/>
+            <div className="row mb-2">
+                <label htmlFor="fullName" className="col-sm-4 col-form-label fw-bold">FullName</label>
+                <div className="col-sm-8">
+                    <input type="text" id="fullName" className="form-control" placeholder="fullName" {...formik.getFieldProps("fullName")}/>
+                </div>
             </div>
-            <div>
-                <input type="checkbox" id="lookingForAJob" {...formik.getFieldProps("lookingForAJob")}/>
-                <label htmlFor="lookingForAJob">lookingForAJob</label>
+            <div className="row mb-2">
+                <div className="col-12">
+                    <div className="form-check pt-1 pb-1">
+                        <input type="checkbox" className="form-check-input" id="lookingForAJob" {...formik.getFieldProps("lookingForAJob")}/>
+                        <label htmlFor="lookingForAJob" className="customCheckbox fw-bold">Looking for a job</label>
+                    </div>
+                </div>
             </div>
-            <div>
-                <label htmlFor="myProfessionalsSkills"  className="textBold">My professionals skills</label>
-                <textarea id="myProfessionalsSkills" {...formik.getFieldProps("lookingForAJobDescription")}
-                           placeholder="myProfessionalsSkills"></textarea>
+            <div className="row mb-2">
+                <label htmlFor="myProfessionalsSkills"  className="col-sm-4 col-form-label fw-bold">My professionals skills</label>
+                <div className="col-sm-8">
+                    <textarea id="myProfessionalsSkills" className="form-control" {...formik.getFieldProps("lookingForAJobDescription")}
+                        placeholder="myProfessionalsSkills"></textarea>
+                </div>
             </div>
-            <div>
-                <label htmlFor="aboutMe"  className="textBold">About me</label>
-                <input type="text" placeholder="aboutMe"  {...formik.getFieldProps("aboutMe")}/>
+            <div className="row mb-2">
+                <label htmlFor="aboutMe"  className="col-sm-4 col-form-label fw-bold">About me</label>
+                <div className="col-sm-8">
+                    <input type="text" className="form-control" placeholder="aboutMe"  {...formik.getFieldProps("aboutMe")}/>
+                </div>
             </div>
-            <div>
-                <span className="textBold">Contacts:</span>
+            <div className="mt-4">
+                <h5 className="mb-3">Contacts</h5>
                 {getKeys(profile?.contacts).map((key) => {
                     return (
-                        <div key={key}>
-                            <div className="textBold">
-                                <label htmlFor="contactName">{key}:</label>
-                                <input type="text" placeholder={key}
-                                    {...formik.getFieldProps(`contacts.${key}`)}/>
+                        <div className="row mb-2" key={key}>
+                            <label className="col-sm-4 col-form-label fw-bold" htmlFor="contactName">{key}:</label>
+                            <div className="col-sm-8">
+                                <input type="text" className="form-control" placeholder={key}
+                                       {...formik.getFieldProps(`contacts.${key}`)}/>
                             </div>
                         </div>
                     )
                 })}
             </div>
+            <div className={"d-flex justify-content-end mt-3"}><button className="btn btnCustom" type="button">Save changes</button></div>
         </form>
     )
 };

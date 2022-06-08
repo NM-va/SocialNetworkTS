@@ -38,10 +38,10 @@ export const ProfileStatusWithHooks: React.FC<PropsType> = (props) =>  {
     // }
 
     return (
-        <div>
+        <>
             {!editMode &&
             <div>
-                    <span className="textBold">Status: </span>
+                    <span className="fw-bold">Status: </span>
                     <span onDoubleClick={activateEditMode}>
                         {status || '----'}</span>
             </div>
@@ -56,7 +56,7 @@ export const ProfileStatusWithHooks: React.FC<PropsType> = (props) =>  {
             </div>
             }
 
-        </div>
+        </>
 
     )
 }

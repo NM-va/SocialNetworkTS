@@ -1,21 +1,22 @@
 import React from "react";
 import styles from "./Post.module.scss";
+import {UserAvatar} from "../../UserAvatar/UserAvatar";
+import {ProfileType} from "../../../../redux/profile-reducer";
 
 type PostType = {
     message: string
     like: number
+    profile: ProfileType | null
 }
 
 export const Post: React.FC<PostType> = (props) => {
     return (
         <div className={styles.item}>
-            <div className={styles.avatarItem}>
-                <img src="https://uxwing.com/wp-content/themes/uxwing/download/12-people-gesture/avatar.png" alt=""/>
-            </div>
-            {props.message}
-            <div>
-                <div>{props.like}</div>
+            <UserAvatar profile={props.profile} avatarClassName={"userAvatarSmall"}/>
+            <div className={styles.message}>{props.message}</div>
+            <div className={styles.postAdditionalInfo}>
+                <div><i className="bi bi-heart-pulse me-2"></i>{props.like}</div>
             </div>
         </div>
     )
-}
+};

@@ -1,9 +1,20 @@
+@use '../../../../scss/variables' as vars;
+
 .item {
     color: #003101;
+    margin-bottom: 1rem;
+    border: 1px solid vars.$border_color;
+    padding: 1rem;
+    border-radius: .5rem;
 }
 
-.avatarItem {
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
+.message {
+    margin-top: 1rem;
+}
+
+.postAdditionalInfo {
+    border-top: 1px solid vars.$border_color;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    width: 100%;
 }
