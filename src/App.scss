@@ -1,8 +1,10 @@
 /*my color scheme*/
 /*https://javier.xyz/cohesive-colors/?src=ebf5ed,cfe1c9,aec5a9,5a9d2c,003101&overlay=FF9C00&intensity=0*/
-
+//@use  "~bootstrap/scss/variables" as *;
+//@use  "~bootstrap/scss/mixins/buttons" as mixinButtons;
+//@use  "~bootstrap/scss/buttons" as buttons;
 @use './scss/variables' as vars;
-
+@use './index.scss';
 
 .headerMain{
     position: relative;
@@ -15,7 +17,7 @@
     background-size: cover;
 }
 
-.userAvatar {
+.userAvatarBigBox {
     position: absolute;
     left: 50%;
     transform: translate(-50%,0);
@@ -25,24 +27,195 @@
     z-index: 4;
 }
 
-.userAvatarImg {
+.userAvatarBig {
     border-radius: 100%;
     border: 6px solid vars.$second_bg;
     margin: 0 auto 15px;
     overflow: hidden;
+    display: block;
     width: 132px;
     height: 132px;
-    background-color: vars.$main_bg;
+    position: relative;
+}
+
+.userAvatarSmall {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    display: block;
+    border-radius: 100%;
+    position: relative;
+}
+
+.userAvatarImg {
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%
 }
 
 .content {
-    margin-top: 20px;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
 }
 
-.error-message {
-    color: red;
+.card.cardItem {
+    border: none;
+    box-shadow: vars.$box_shadow2;
+    padding: 1.25rem;
 }
 
-.textBold {
-    font-weight: bold;
+.titleInfo {
+    position: relative;
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+    
+    &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        border-bottom: 1px solid vars.$border_color;
+    }
+}
+
+//.separator {
+//    position: relative;
+//    margin-top: 1.25rem;
+//    margin-bottom: 1.25rem;
+//    border-bottom: 1px solid vars.$border_color;
+//}
+//
+//.btnBlock {
+//    display: flex;
+//    justify-content: flex-end;
+//}
+//
+//.textCustom {
+//    color: vars.$custom_bg;
+//}
+
+
+
+%btnCustom {
+    background-color: vars.$custom_bg;
+    color: vars.$text_second_color;
+
+    &:hover {
+        color: vars.$text_color;
+    }
+
+    .btn-check:focus + &,
+    &:focus {
+        outline: 0;
+        box-shadow: 0 0 0 .25rem vars.$green_custom_035;
+    }
+
+    .btn-check:checked + &,
+    .btn-check:active + &,
+    &:active,
+    &.active {
+        box-shadow: inset 0 3px 5px rgba(vars.$black, .125);
+
+        &:focus {
+            box-shadow: 0 0 0 .25rem vars.$green_custom_035, inset 0 3px 5px rgba(vars.$black, .125);
+        }
+    }
+
+    &:disabled,
+    &.disabled,
+    fieldset:disabled & {
+        pointer-events: none;
+        opacity: .65;
+        box-shadow: none;
+    }
+}
+
+
+
+.btnCustom {
+    @include index.button-variant(vars.$custom_bg, vars.$border_accent_color, vars.$text_second_color, $hover-color: vars.$text_second_color);
+}
+
+.btnOutlineCustom {
+    @include index.button-outline-variant(vars.$custom_bg, vars.$text_second_color);
+}
+
+.chooseFile {
+    @include index.button-variant(vars.$custom_bg, vars.$border_accent_color, vars.$text_second_color, $hover-color: vars.$text_second_color);
+    cursor: pointer;
+
+    input[type="file"] {
+        display: none;
+    }
+}
+
+.btnEdit {
+    color: vars.$custom_bg;
+
+    &:hover {
+        color: vars.$custom_dark_bg;
+    }
+}
+
+
+.titleBox {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    h4 {
+        margin-bottom: 0;
+    }
+
+    .btn {
+        padding-top: 0;
+        padding-bottom: 0;
+        margin-left: auto;
+    }
+}
+
+//input[type="checkbox"] {
+//    display: none;
+//}
+//
+//.customCheckbox {
+//    position: relative;
+//
+//    &:before {
+//        content: '';
+//        position: absolute;
+//        width: 20px;
+//        height: 20px;
+//        background-color: vars.$second_bg;
+//        border: 1px solid vars.$border-color;
+//    }
+//}
+//
+//input[type="checkbox"]:checked + .customCheckbox {
+//    &:before {
+//        background-color: vars.$custom_bg;
+//        border: 1px solid vars.$custom_bg;
+//    }
+//}
+
+.form-check-input {
+    background-color: vars.$second_bg;
+    border: 1px solid vars.$border_color;
+
+    &:focus {
+        border-color: vars.$border_accent_color;
+        box-shadow: vars.$box-shadow3;
+    }
+
+    &:checked {
+        background-color: vars.$custom_bg;
+        border-color: vars.$border_accent_color;
+    }
 }

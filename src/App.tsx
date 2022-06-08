@@ -1,4 +1,4 @@
-import React, {CSSProperties, Suspense } from "react";
+import React, {CSSProperties} from "react";
 import "./App.scss";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {Navbar} from "./components/Navbar/Navbar";
@@ -16,6 +16,8 @@ import {Preloader} from "./components/common/Preloader/Preloader";
 import {WithSuspense} from "./hoc/withSuspense";
 import headerMainImg from "./assets/images/summer.jpg";
 import {FriendsContainer} from "./components/Friends/FriendsContainer";
+import {ProfileType} from "./redux/profile-reducer";
+import {UserAvatar} from "./components/Profile/UserAvatar/UserAvatar";
 
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
 const DialogsContainer = React.lazy(() => import("./components/Dialogs/DialogsContainer"));
@@ -26,6 +28,8 @@ type MapDispatchToProps = {
 
 type MapStateToPropsType = {
     initialized: boolean
+    login: string | null
+    profile: ProfileType | null
 }
 
 export type InitializePropsType = MapStateToPropsType & MapDispatchToProps
@@ -58,11 +62,9 @@ class App extends React.Component<InitializePropsType, StoreType> {
                 <main>
                     <div className="headerMain">
                         <div className="headerTopMain" style={headerMainBg}>
-                            <div className={"userAvatar"}>
-                                <div className={"userAvatarImg"}>
-                                    <img src="" alt=""/>
-                                </div>
-                                <h5>Madison Howard</h5>
+                            <div className={"userAvatarBigBox"}>
+                                <UserAvatar profile={this.props.profile} avatarClassName={"userAvatarBig"}/>
+                                <h5>{this.props.login}</h5>
                             </div>
                         </div>
                         <Navbar/>
@@ -97,7 +99,9 @@ class App extends React.Component<InitializePropsType, StoreType> {
 }
 
 const MapStateToProps = (state: StoreType): MapStateToPropsType => ({
-    initialized: state.app.initialized
+    initialized: state.app.initialized,
+    login: state.auth.login,
+    profile: state.profilePage.profile
 });
 
 export default compose<React.ComponentType>(
