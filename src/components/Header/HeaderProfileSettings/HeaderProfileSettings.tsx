@@ -19,7 +19,7 @@ export const HeaderProfileSettings = (props: PropsType) => {
 
     return (
         <>
-            <button className={styles.profileTrigger} onClick={toggleDropdown}>
+            <button className={styles.profileTrigger} onClick={toggleDropdown} type="button">
                 <img className={styles.smallUserAvatar} src={props.profile?.photos.large || userPhoto} alt="profile picture"/>
             </button>
             {isOpenDropdown &&
@@ -34,12 +34,18 @@ export const HeaderProfileSettings = (props: PropsType) => {
                     </div>
                     <div className={styles.profileBody}>
                         <ul>
-                            <li><a href="profile.html"><i className="bi bi-person"></i>Profile</a></li>
-                            <li><a href="#"><i className="bi bi-envelope"></i>Message</a></li>
+                            <li>
+                                <NavLink to="profile.html"><i className="bi bi-person"></i>Profile</NavLink>
+                            </li>
+                            <li>
+                                <NavLink to=""><i className="bi bi-envelope"></i>Message</NavLink>
+                            </li>
                         </ul>
                         <ul>
-                            <li><a href="signup.html" onSubmit={props.logout}><i className="bi bi-door-open"></i>Sing
-                                    out</a></li>
+                            <li>
+                                <NavLink to="signup.html" onSubmit={props.logout}><i className="bi bi-door-open"></i>Sing
+                                    out</NavLink>
+                            </li>
                         </ul>
                     </div>
                 </div>
