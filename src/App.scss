@@ -219,3 +219,37 @@
         border-color: vars.$border_accent_color;
     }
 }
+
+.page-item.active {
+    .page-link {
+        color: vars.$text_second_color;
+        background-color: vars.$custom_bg;
+        border-color: vars.$border_accent_color;
+    }
+}
+
+.page-link {
+    color: vars.$text_accent_color;
+    background-color: vars.$second_bg;
+    border: 1px solid vars.$border_accent_color;
+
+    &:hover {
+        color: vars.$text_second_color;
+        background-color: vars.$custom_bg;
+        border-color: vars.$border_accent_color;
+        cursor: pointer;
+    }
+
+    &:focus {
+        color: vars.$text_accent_color;
+        background-color: vars.$main_bg;
+        box-shadow: vars.$box-shadow3;
+    }
+
+    &.active {
+        color: vars.$text_second_color;
+        background-color: vars.$custom_bg;
+        border-color: vars.$border_accent_color;
+    }
+}
+
