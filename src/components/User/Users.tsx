@@ -2,6 +2,7 @@ import React from "react";
 import {UserItemType} from "../../redux/users-reducer";
 import {Pagination} from "../common/Pagination/Pagination";
 import {User} from "./User";
+import styles from "./Users.module.scss";
 
 type PropsType = {
     users: Array<UserItemType>
@@ -29,13 +30,8 @@ export const Users = ({
                       }: PropsType) => {
     
     return (
-        <div>
-            <Pagination totalItemsCount={totalItemsCount}
-                        pageSize={pageSize}
-                        currentPage={currentPage}
-                        onPageChanged={onPageChanged}
-                        portionSize={10}/>
-            <div>
+        <div className={styles.usersList}>
+            <div className="row mb-3">
                 {
                     users.map(user => (
                         <User key={user.id}
@@ -46,6 +42,11 @@ export const Users = ({
                     ))
                 }
             </div>
+            <Pagination totalItemsCount={totalItemsCount}
+                        pageSize={pageSize}
+                        currentPage={currentPage}
+                        onPageChanged={onPageChanged}
+                        portionSize={10}/>
         </div>
     )
 }

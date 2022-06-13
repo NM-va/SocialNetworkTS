@@ -6,7 +6,7 @@
 @use './scss/variables' as vars;
 @use './index.scss';
 
-.headerMain{
+.headerMain {
     position: relative;
 }
 
@@ -156,8 +156,9 @@
     }
 }
 
-.btnEdit {
+.btnText {
     color: vars.$custom_bg;
+    padding: 0;
 
     &:hover {
         color: vars.$custom_dark_bg;
@@ -175,8 +176,6 @@
     }
 
     .btn {
-        padding-top: 0;
-        padding-bottom: 0;
         margin-left: auto;
     }
 }
@@ -231,7 +230,7 @@
 .page-link {
     color: vars.$text_accent_color;
     background-color: vars.$second_bg;
-    border: 1px solid vars.$border_accent_color;
+    border: 1px solid vars.$border_color;
 
     &:hover {
         color: vars.$text_second_color;
