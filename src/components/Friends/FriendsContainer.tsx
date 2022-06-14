@@ -15,6 +15,6 @@ let mapStateToProps = (state: StoreType) => {
     return {
         sidebar: state.sidebar
     }
-}
+};
 
 export const FriendsContainer = connect(mapStateToProps, {})(Friends)
