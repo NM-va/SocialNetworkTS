@@ -4,13 +4,13 @@ import {Post} from "./Post/Post";
 import {MyPostsPropsType} from "./MyPostsContainer";
 import {useFormik} from "formik";
 import * as Yup from 'yup';
-import {UserAvatar} from "../UserAvatar/UserAvatar";
+import {PhotosType, UserAvatar} from "../UserAvatar/UserAvatar";
 import {ProfileType} from "../../../redux/profile-reducer";
 
 type PropsType = {
     addPost: (text: string) => void
-    login:string | null
-    profile: ProfileType | null
+    login: string | null
+    photos: PhotosType | undefined
 }
 
 const SignupSchema = Yup.object().shape({
@@ -38,7 +38,7 @@ const MyPostForm = (props: PropsType) => {
             // formik.resetForm();
         }}>
             <div className="d-flex">
-                <UserAvatar profile={props.profile} avatarClassName={"userAvatarSmall"}/>
+                <UserAvatar photos={props.photos} avatarClassName={"userAvatarSmall"} address={"/"} sizePhoto={"small"}/>
                 <div className="ps-3 w-100">
                     <textarea className="form-control"
                         {...formik.getFieldProps("textPost")}
@@ -61,12 +61,12 @@ const MyPostForm = (props: PropsType) => {
 
 export const MyPosts:React.FC<MyPostsPropsType> = React.memo((props) => {
 
-    let postsElements = props.posts.map(post => <Post key={post.id} profile={props.profile} message={post.message} like={post.likesCount}/>);
+    let postsElements = props.posts.map(post => <Post key={post.id} photos={props.photos} message={post.message} like={post.likesCount}/>);
 
     return (
         <div className={`${styles.postsBlock} card cardItem`}>
             <h2>My Posts</h2>
-            <MyPostForm addPost={props.addPost} profile={props.profile} login={props.login} />
+            <MyPostForm addPost={props.addPost} photos={props.photos} login={props.login} />
             <div className={styles.posts}>
                 {postsElements}
             </div>

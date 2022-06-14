@@ -4,11 +4,12 @@ import {MyPosts} from "./MyPosts";
 import {StoreType} from "../../../redux/redux-store";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
+import {PhotosType} from "../UserAvatar/UserAvatar";
 
 type MapStatePropsType = {
     posts: Array<PostType>
     login:string | null
-    profile: ProfileType | null
+    photos: PhotosType | undefined
 }
 
 type MapDispatchPropsType = {
@@ -21,7 +22,7 @@ let mapStateToProps = (state: StoreType): MapStatePropsType => {
     return {
         posts: state.profilePage.posts,
         login: state.auth.login,
-        profile: state.profilePage.profile
+        photos: state.profilePage.profile?.photos
     }
 };
 
