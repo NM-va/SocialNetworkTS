@@ -35,7 +35,7 @@ export const Pagination = ({
 
     return (
         <nav>
-            <ul className={"pagination"}>
+            <ul className={"pagination justify-content-center"}>
                 {portionNumber > 1 &&
                     <li className={"page-item"}>
                         <span className={"page-link"} onClick={() => setPortionNumber(portionNumber - 1)}>Prev</span>
