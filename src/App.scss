@@ -85,24 +85,6 @@
     }
 }
 
-//.separator {
-//    position: relative;
-//    margin-top: 1.25rem;
-//    margin-bottom: 1.25rem;
-//    border-bottom: 1px solid vars.$border_color;
-//}
-//
-//.btnBlock {
-//    display: flex;
-//    justify-content: flex-end;
-//}
-//
-//.textCustom {
-//    color: vars.$custom_bg;
-//}
-
-
-
 %btnCustom {
     background-color: vars.$custom_bg;
     color: vars.$text_second_color;
@@ -180,30 +162,6 @@
     }
 }
 
-//input[type="checkbox"] {
-//    display: none;
-//}
-//
-//.customCheckbox {
-//    position: relative;
-//
-//    &:before {
-//        content: '';
-//        position: absolute;
-//        width: 20px;
-//        height: 20px;
-//        background-color: vars.$second_bg;
-//        border: 1px solid vars.$border-color;
-//    }
-//}
-//
-//input[type="checkbox"]:checked + .customCheckbox {
-//    &:before {
-//        background-color: vars.$custom_bg;
-//        border: 1px solid vars.$custom_bg;
-//    }
-//}
-
 .form-check-input {
     background-color: vars.$second_bg;
     border: 1px solid vars.$border_color;
@@ -252,3 +210,22 @@
     }
 }
 
+.userItemBox {
+    display: flex;
+    align-items: center;
+    background-color: vars.$second_bg;
+}
+
+.userInfo {
+    margin-left: 1.25rem;
+}
+
+.userName {
+    display: block;
+    color: vars.$text_color;
+    font-weight: bold;
+
+    &:hover {
+        color: vars.$text_accent_color;
+    }
+}
