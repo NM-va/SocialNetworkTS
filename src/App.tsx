@@ -2,7 +2,7 @@ import React, {CSSProperties} from "react";
 import "./App.scss";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {Navbar} from "./components/Navbar/Navbar";
-import {News} from "./components/News/News";
+import NewsContainer from "./components/News/NewsContainer";
 import {Music} from "./components/Music/Music";
 import {Settings} from "./components/Settings/Settings";
 import {UsersContainer} from "./components/User/UsersContainer";
@@ -83,7 +83,7 @@ class App extends React.Component<InitializePropsType, StoreType> {
                                         <Route path='/dialogs' render={WithSuspense(DialogsContainer)}/>
                                         <Route path='/profile/:userId?' render={WithSuspense(ProfileContainer)}/>
                                         <Route path='/users' render={() => <UsersContainer/>}/>
-                                        <Route path='/news' render={() => <News/>}/>
+                                        <Route path='/news' render={() => <NewsContainer/>}/>
                                         <Route path='/music' render={() => <Music/>}/>
                                         <Route path='/settings' render={() => <Settings/>}/>
                                         <Route path='/login' render={() => <LoginContainer/>}/>
