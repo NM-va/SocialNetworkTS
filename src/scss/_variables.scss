@@ -2,7 +2,9 @@ $white: #fff;
 $lightest_green: #ebf5ed;
 $lighter_green: #cfe1c9;
 $light_green: #aec5a9;
-$green: #5a9d2c;
+$green_custom: #5a9d2c;
+$green_custom_tr: rgba(90, 157, 44, .8);
+$green_custom_035: lighten(#5a9d2c, 35%);
 $dark_green: #003101;
 $lighter_grey: #ddd;
 $light_grey: #666;
@@ -14,14 +16,28 @@ $black: #333;
 $body_bg: $lightest_green;
 $main_bg: $lightest_green;
 $second_bg: $white;
-$bg_tr: transparent;
+$custom_bg: $green_custom;
+$custom_dark_bg: $dark_green;
+$tr_bg: transparent;
 
 $text_color: $black;
-$text_accent_color: $green;
+$text_second_color: $white;
+$text_accent_color: $green_custom;
 $text_muted_color: $light_grey;
 
-$border_color: $lighter_grey;
+$border_color: $lighter_green;
+$border_accent_color: $green_custom;
 
 $box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.2);
 $box-shadow2: 0 1px 15px 0 rgba(51, 51, 51, 0.2);
+$box-shadow3: 0 0 0 .25rem $green_custom_035;
+$box-shadow4: 0 0 0 2px $green_custom_tr;
+$box-shadow5: 0px 1px 5px 0px rgba(51, 51, 51, 0.2);
+
+
+
+
+@mixin boxShadow($colorShadow) {
+  box-shadow: 0 0 8px 1px $colorShadow;
+}
 
