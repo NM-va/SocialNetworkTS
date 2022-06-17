@@ -3,7 +3,7 @@ import "./App.scss";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
 import {Navbar} from "./components/Navbar/Navbar";
 import NewsContainer from "./components/News/NewsContainer";
-import {Music} from "./components/Music/Music";
+import MusicContainer from "./components/Music/MusicContainer";
 import {Settings} from "./components/Settings/Settings";
 import {UsersContainer} from "./components/User/UsersContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
@@ -84,7 +84,7 @@ class App extends React.Component<InitializePropsType, StoreType> {
                                         <Route path='/profile/:userId?' render={WithSuspense(ProfileContainer)}/>
                                         <Route path='/users' render={() => <UsersContainer/>}/>
                                         <Route path='/news' render={() => <NewsContainer/>}/>
-                                        <Route path='/music' render={() => <Music/>}/>
+                                        <Route path='/music' render={() => <MusicContainer/>}/>
                                         <Route path='/settings' render={() => <Settings/>}/>
                                         <Route path='/login' render={() => <LoginContainer/>}/>
                                     </Switch>

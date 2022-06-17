@@ -1,1 +1,253 @@
+@use '../../scss/variables' as vars;
 
+.playlist{
+  position: relative;
+  padding-bottom: 60px;
+}
+
+.listSongs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding:  0 0 1rem;
+  background-color: vars.$second_bg;
+  border-radius: 1rem;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.listSongsWrapper {
+  padding: 0 0 6rem;
+  flex: 1;
+  width: calc(100% + 1.7rem);
+  overflow-y: auto;
+}
+
+.listSongsItem {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0.6rem 3rem 0.6rem 1.5rem;
+  transition: 0.3s ease-in;
+  box-sizing: border-box;
+  background-color: white;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, vars.$main_bg, vars.$main_bg_tr);
+    opacity: 0;
+    transition: 0.3s ease-out;
+    transform: translateX(-100%);
+  }
+
+  &:not(:disabled):hover {
+    transition-delay: 0s !important;
+  }
+  &:not(:disabled):hover,
+  &.active {
+    z-index: 2;
+
+    &:before {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}
+
+.listSongsImgBox {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: 3rem;
+  height: 3rem;
+  border-radius: .75rem;
+  overflow: hidden;
+  margin: 0;
+  transition: 0.3s;
+}
+
+.listSongsImg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.songInfo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex: 1;
+  width: calc(100%);
+  height: 100%;
+  cursor: pointer;
+  padding: .5rem;
+  box-sizing: border-box;
+  border-radius: .75rem;
+  transition: 0.15s;
+}
+
+.songAuthor,
+.songName {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.songAuthor,
+.songDuration {
+  color: vars.$text_muted_color;
+  font-size: .75rem;
+}
+
+.songName {
+  font-weight: 700;
+  margin: 0 auto 0 0;
+}
+
+.songDuration {
+  transition: 0.3s;
+}
+
+.songStatus {
+  //position: absolute;
+  //bottom: -0.5rem;
+  //left: 1.5rem;
+  display: flex;
+  width: calc(100% - 3rem);
+  height: 0.2rem;
+  border-radius: 0.1rem;
+  background-color: vars.$main_bg_tr;
+
+  span {
+    height: 100%;
+    background-color: vars.$main_bg_tr;
+    //background-color: rgba(white, 0.8);
+  }
+}
+
+
+.songBtn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  margin-left: 1rem;
+  border-radius: 100%;
+  background-color: vars.$main_bg;
+  border: none;
+  transition: 0.15s;
+
+  i {
+    opacity: 0.7;
+    font-size: 1.2rem;
+  }
+
+  &:not(:disabled):hover {
+    background-color: vars.$second_bg;
+    color: vars.$text_accent_color;
+
+    i {
+      opacity: 1;
+    }
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: vars.$box-shadow6;
+  }
+}
+
+.songPlayPanel {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  height: 90px;
+  width: 100%;
+  background-color: vars.$third_bg_tr;
+  border-radius: 2rem;
+  box-sizing: border-box;
+  //padding-bottom: 8rem;
+  //transform: translateY(-58rem);
+  transition: 0.45s;
+  box-shadow: vars.$box-shadow;
+  animation: popup 0.45s forwards;
+}
+
+.songControls {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  //.btn--play {
+  //  height: 5rem;
+  //  width: 5rem;
+  //  margin: 0;
+  //  color: white;
+  //  background-color: transparent;
+  //  transition: 0.3s;
+  //
+  //  &:not(:disabled):hover {
+  //    background-color: rgba(white, 0.3);
+  //  }
+  //
+  //  i {
+  //    font-size: 2.4rem;
+  //  }
+  //
+  //  &:not(:last-child) {
+  //    margin-right: 2rem;
+  //  }
+  //}
+}
+
+@keyframes horizontalShift{
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scale{
+  100%{
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fill{
+  100%{
+    background-position: left;
+  }
+}
+
+@keyframes popup{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+
+@keyframes fullpopup{
+  100%{
+    transform: translateY(-94%);
+  }
+}
