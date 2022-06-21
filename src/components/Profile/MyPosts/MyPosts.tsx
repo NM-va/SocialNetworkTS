@@ -5,7 +5,6 @@ import {MyPostsPropsType} from "./MyPostsContainer";
 import {useFormik} from "formik";
 import * as Yup from 'yup';
 import {PhotosType, UserAvatar} from "../UserAvatar/UserAvatar";
-import {ProfileType} from "../../../redux/profile-reducer";
 
 type PropsType = {
     addPost: (text: string) => void
