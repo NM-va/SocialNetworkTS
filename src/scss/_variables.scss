@@ -1,7 +1,11 @@
 $white: #fff;
+$white_tr_05: rgba(255, 255, 255, .5);
+$white_tr_08: rgba(255, 255, 255, .8);
 $lightest_green: #ebf5ed;
+$lightest_green_tr_02: rgba(235, 245, 237, .02);
 $lighter_green: #cfe1c9;
 $light_green: #aec5a9;
+$light_green_tr_02: rgba(174, 197, 169, .9);
 $green_custom: #5a9d2c;
 $green_custom_tr: rgba(90, 157, 44, .8);
 $green_custom_035: lighten(#5a9d2c, 35%);
@@ -15,7 +19,11 @@ $black: #333;
 
 $body_bg: $lightest_green;
 $main_bg: $lightest_green;
+$main_bg_tr: $lightest_green_tr_02;
 $second_bg: $white;
+$second_bg_tr: $white_tr_05;
+$third_bg: $light_green;
+$third_bg_tr: $light_green_tr_02;
 $custom_bg: $green_custom;
 $custom_dark_bg: $dark_green;
 $tr_bg: transparent;
@@ -32,7 +40,8 @@ $box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.2);
 $box-shadow2: 0 1px 15px 0 rgba(51, 51, 51, 0.2);
 $box-shadow3: 0 0 0 .25rem $green_custom_035;
 $box-shadow4: 0 0 0 2px $green_custom_tr;
-$box-shadow5: 0px 1px 5px 0px rgba(51, 51, 51, 0.2);
+$box-shadow5: 0 1px 5px 0px rgba(51, 51, 51, 0.2);
+$box-shadow6: 0 0 .6rem rgba(90, 157, 44, .6);
 
 
 
