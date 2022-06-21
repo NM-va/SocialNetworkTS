@@ -22,24 +22,10 @@ export const User = ({
     
     return (
         <div className="col-6 mb-4">
-            <div className={styles.userItem}>
+            <div className={`userItemBox ${styles.userItem}`}>
                 <UserAvatar photos={user.photos}  avatarClassName={"userAvatarSmall"} address={`/profile/${user.id}`} sizePhoto={"small"}/>
-                {/*<div className={styles.userAvatar}>*/}
-                    {/*<NavLink to={"/profile/" + user.id}>*/}
-                    {/*    <img src={user.photos.small != null ? user.photos.small : userPhoto} alt=""/>*/}
-                    {/*</NavLink>*/}
-                {/*</div>*/}
-                <div className={styles.userInfo}>
-                    <div>
-                        <div>
-                            <NavLink className={styles.userName} to={"/profile/" + user.id}>{user.name}</NavLink>
-                            {/*<div>{user.status}</div>*/}
-                        </div>
-                        {/*<div>*/}
-                            {/*{user.location.country}*/}
-                            {/*<span>{"user.location.city"}</span>*/}
-                        {/*</div>*/}
-                    </div>
+                <div className={"userInfo"}>
+                    <NavLink className={"userName"} to={"/profile/" + user.id}>{user.name}</NavLink>
                     {
                         user.followed ?
                             <button className={"btn btnText btn-sm"}

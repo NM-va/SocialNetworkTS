@@ -32,7 +32,7 @@ export type UserItemType = {
 
 let initialState = {
     users: [] as Array<UserItemType>,
-    pageSize: 5,
+    pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,

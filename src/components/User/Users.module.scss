@@ -5,22 +5,6 @@
 }
 
 .userItem {
-    display: flex;
-    align-items: center;
     padding: 1.25rem 1rem;
-    background-color: vars.$second_bg;
     box-shadow: vars.$box-shadow5;
-}
-
-.userInfo {
-    margin-left: 1.25rem;
-}
-
-.userName {
-    color: vars.$text_color;
-    font-weight: bold;
-
-    &:hover {
-        color: vars.$text_accent_color;
-    }
 }
