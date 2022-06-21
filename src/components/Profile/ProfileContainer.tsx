@@ -5,7 +5,7 @@ import {StoreType} from "../../redux/redux-store";
 import {
     getUserProfile,
     getUserStatus,
-    ProfileType,
+    ProfileDomainType,
     savePhoto,
     saveProfile,
     updateStatus
@@ -16,7 +16,7 @@ import {ProfileDataFormType} from "./ProfileInfo/ProfileDataForm";
 
 
 type MapStateToPropsType = {
-    profile: ProfileType | null
+    profile: ProfileDomainType | null
     status: string
     authorizedUserId: string | null
     isAuth: boolean
@@ -24,7 +24,7 @@ type MapStateToPropsType = {
 }
 
 type MapDispatchToPropsType = {
-    getUserProfile: (userId: string) => void
+    getUserProfile: (userId: string, isOwner: boolean) => void
     getUserStatus: (userId: string) => void
     updateStatus: (status: string) => void
     savePhoto: (file: any) => void
@@ -34,7 +34,7 @@ type MapDispatchToPropsType = {
 type userProfilePropsType = MapStateToPropsType & MapDispatchToPropsType
 
 //this.props.match.params type
-type PathParamsType = {
+export type PathParamsType = {
     userId: string
 }
 
@@ -44,7 +44,7 @@ class ProfileContainer extends React.Component<PropsType, StoreType> {
 
     refreshProfile() {
         let userId = this.props.match.params.userId;
-
+        let isOwner = userId === undefined;
         if(!userId) {
             if (this.props.authorizedUserId) {
                 userId = this.props.authorizedUserId;
@@ -52,7 +52,7 @@ class ProfileContainer extends React.Component<PropsType, StoreType> {
                 this.props.history.push("/login");
             }
         }
-        this.props.getUserProfile(userId);
+        this.props.getUserProfile(userId, isOwner);
         this.props.getUserStatus(userId);
     }
 

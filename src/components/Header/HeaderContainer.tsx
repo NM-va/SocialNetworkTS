@@ -3,14 +3,15 @@ import {Header} from "./Header";
 import {connect} from "react-redux";
 import {StoreType} from "../../redux/redux-store";
 import {logout} from "../../redux/auth-reducer";
-import {ProfileType} from "../../redux/profile-reducer";
+import {ProfileDomainType} from "../../redux/profile-reducer";
+import {PhotosType} from "../Profile/UserAvatar/UserAvatar";
 
 
 type MapStateToPropsType = {
     isAuth:boolean
     login:string | null
     email:string | null
-    profile: ProfileType | null
+    profile: ProfileDomainType | null
 }
 
 type MapDispatchToProps = {

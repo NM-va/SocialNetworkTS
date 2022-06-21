@@ -16,7 +16,7 @@ import {Preloader} from "./components/common/Preloader/Preloader";
 import {WithSuspense} from "./hoc/withSuspense";
 import headerMainImg from "./assets/images/summer.jpg";
 import {FriendsContainer} from "./components/Friends/FriendsContainer";
-import {ProfileType} from "./redux/profile-reducer";
+import {ProfileDomainType} from "./redux/profile-reducer";
 import {PhotosType, UserAvatar} from "./components/Profile/UserAvatar/UserAvatar";
 
 const ProfileContainer = React.lazy(() => import("./components/Profile/ProfileContainer"));
@@ -29,7 +29,11 @@ type MapDispatchToProps = {
 type MapStateToPropsType = {
     initialized: boolean
     login: string | null
-    photos: PhotosType | undefined
+    profile: ProfileDomainType | null
+}
+
+type localState = {
+    userAvatar: PhotosType | undefined
 }
 
 export type InitializePropsType = MapStateToPropsType & MapDispatchToProps
@@ -38,14 +42,23 @@ const headerMainBg: CSSProperties = {
     backgroundImage: `url("${headerMainImg}")`
 };
 
-class App extends React.Component<InitializePropsType, StoreType> {
+class App extends React.Component<InitializePropsType, localState, StoreType> {
+    state = {
+        userAvatar: {large: '', small: ''}
+    };
+
+
     catchAllUnhandeledErrors = () => {
         alert('Some error occured');
         console.error(PromiseRejectionEvent);
     };
     componentDidMount() {
         this.props.initializeApp();
-        window.addEventListener('unhadledrejection', this.catchAllUnhandeledErrors)
+        window.addEventListener('unhadledrejection', this.catchAllUnhandeledErrors);
+
+        if (this.props.profile?.isOwner) {
+            this.setState({userAvatar: this.props.profile.photos});
+        }
     }
     componentWillUnmount() {
         window.removeEventListener('unhadledrejection', this.catchAllUnhandeledErrors)
@@ -63,7 +76,7 @@ class App extends React.Component<InitializePropsType, StoreType> {
                     <div className="headerMain">
                         <div className="headerTopMain" style={headerMainBg}>
                             <div className={"userAvatarBigBox"}>
-                                <UserAvatar photos={this.props.photos} avatarClassName={"userAvatarBig"} address={"/"} sizePhoto={"large"}/>
+                                <UserAvatar photos={this.state.userAvatar} avatarClassName={"userAvatarBig"} address={"/"} sizePhoto={"large"}/>
                                 <h5>{this.props.login}</h5>
                             </div>
                         </div>
@@ -101,7 +114,7 @@ class App extends React.Component<InitializePropsType, StoreType> {
 const MapStateToProps = (state: StoreType): MapStateToPropsType => ({
     initialized: state.app.initialized,
     login: state.auth.login,
-    photos: state.profilePage.profile?.photos
+    profile: state.profilePage.profile
 });
 
 export default compose<React.ComponentType>(
