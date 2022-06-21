@@ -60,7 +60,7 @@ export const ProfileInfo = ({
             <div className={styles.profileInfo}>
                 <div className={`titleBox titleInfo`}>
                         <h4 className="">Profile info</h4>
-                    {isOwner && !editMode && <button onClick={goToEditMode} className="btn btnEdit">Edit info <i className="bi bi-pencil"></i></button> }
+                    {isOwner && !editMode && <button onClick={goToEditMode} className="btn btnText">Edit info <i className="bi bi-pencil"></i></button> }
                     </div>
 
                 {
