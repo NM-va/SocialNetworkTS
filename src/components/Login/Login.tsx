@@ -47,31 +47,32 @@ export const LoginForm = ({login, captcha}:PropsType) => {
             formik.handleSubmit(e);
             // formik.resetForm();
         }}>
-            <div>
-                <input type="email" placeholder={"email"}
+            <div className="mb-3">
+                <input className="form-control" type="email" placeholder={"email"}
                     {...formik.getFieldProps("email")}
                 />
                 {formik.touched.email
                 && formik.errors.email
                 && <div style={{color:'red'}}>{formik.errors.email}</div>}
             </div>
-            <div>
-                <input type="password" placeholder={"password"}
+            <div className="mb-3">
+                <input className="form-control" type="password" placeholder={"password"}
                     {...formik.getFieldProps("password")}
                 />
                 {formik.touched.password
                 && formik.errors.password
                 && <div style={{color:'red'}}>{formik.errors.password}</div>}
             </div>
-            <div>
-                <input type="checkbox" {...formik.getFieldProps("rememberMe")}/>
+            <div className="mb-3">
+                <input type="checkbox" className="form-check-input" id="rememberMe" {...formik.getFieldProps("rememberMe")} />
+                <label htmlFor="rememberMe" className="customCheckbox ms-2">remember me</label>
             </div>
             {captcha && <img src={captcha}/>}
             {captcha &&  <input type="text" placeholder={"symbols from image"}
                                    {...formik.getFieldProps("captcha")}
             />}
-            <div>
-                <button type="submit">Login</button>
+            <div className="mb-3">
+                <button className="btn btnCustom" type="submit">Login</button>
             </div>
         </form>
     )
@@ -92,8 +93,8 @@ const Login:React.FC<MyPostsPropsType> = ({isAuth, login, captchaUrl} ) => {
         return <Redirect to={"/profile"}/>
     }
     return (
-        <div>
-            <h1>Login</h1>
+        <div className={"card cardItem"}>
+            <h3>Login</h3>
             <LoginForm login={login} captcha={captchaUrl}/>
         </div>
 
