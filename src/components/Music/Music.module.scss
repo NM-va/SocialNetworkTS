@@ -18,7 +18,6 @@
 }
 
 .listSongsWrapper {
-  padding: 0 0 6rem;
   flex: 1;
   width: calc(100% + 1.7rem);
   overflow-y: auto;
@@ -118,9 +117,6 @@
 }
 
 .songStatus {
-  //position: absolute;
-  //bottom: -0.5rem;
-  //left: 1.5rem;
   display: flex;
   width: calc(100% - 3rem);
   height: 0.2rem;
@@ -130,7 +126,6 @@
   span {
     height: 100%;
     background-color: vars.$main_bg_tr;
-    //background-color: rgba(white, 0.8);
   }
 }
 
@@ -151,11 +146,13 @@
   i {
     opacity: 0.7;
     font-size: 1.2rem;
+    line-height: 1;
   }
 
   &:not(:disabled):hover {
     background-color: vars.$second_bg;
     color: vars.$text_accent_color;
+    box-shadow: vars.$box-shadow6;
 
     i {
       opacity: 1;
@@ -183,8 +180,6 @@
   background-color: vars.$third_bg_tr;
   border-radius: 2rem;
   box-sizing: border-box;
-  //padding-bottom: 8rem;
-  //transform: translateY(-58rem);
   transition: 0.45s;
   box-shadow: vars.$box-shadow;
   animation: popup 0.45s forwards;
@@ -194,27 +189,6 @@
   display: flex;
   justify-content: center;
   width: 100%;
-
-  //.btn--play {
-  //  height: 5rem;
-  //  width: 5rem;
-  //  margin: 0;
-  //  color: white;
-  //  background-color: transparent;
-  //  transition: 0.3s;
-  //
-  //  &:not(:disabled):hover {
-  //    background-color: rgba(white, 0.3);
-  //  }
-  //
-  //  i {
-  //    font-size: 2.4rem;
-  //  }
-  //
-  //  &:not(:last-child) {
-  //    margin-right: 2rem;
-  //  }
-  //}
 }
 
 @keyframes horizontalShift{

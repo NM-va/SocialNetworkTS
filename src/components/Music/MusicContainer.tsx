@@ -1,7 +1,6 @@
 import React from "react";
 import {StoreType} from "../../redux/redux-store";
 import {connect} from "react-redux";
-import {InitialStateType} from "../../redux/sidebar-reducer";
 import styles from "./Music.module.scss";
 import {Music} from "./Music";
 import {compose} from "redux";
@@ -10,9 +9,6 @@ import {SongItemType} from "../../redux/music-reducer";
 
 type MapStatePropsType = {
     songList: SongItemType[]
-    active: any
-    idx: any
-    pause: boolean
 }
 
 export type MusicPropsType = MapStatePropsType;
@@ -29,17 +25,19 @@ class MusicContainer extends React.Component<MusicPropsType> {
         pause: false
     };
 
-    togglePause = () => {this.setState(state => ({ pause: !this.props.pause}) )};
+    togglePause = () => {
+        this.setState({ pause: !this.state.pause});
+    };
     handlePlay = (active: any) => {
-        this.setState(state => ({
-            active: this.props.active === active ? false : active
-        }))
+        this.setState({
+            active: this.state.active === active ? false : active
+        })
     };
     next = () => {
-        this.handlePlay(Number(this.props.active) < Number(this.props.songList.length) - 1 ? Number(this.props.active) + 1 : 0)
+        this.handlePlay(Number(this.state.active) < Number(this.props.songList.length) - 1 ? Number(this.state.active) + 1 : 0)
     };
     prev = () => {
-        this.handlePlay(Number(this.props.active) > 0 ? Number(this.props.active) - 1 : this.props.songList.length - 1)
+        this.handlePlay(Number(this.state.active) > 0 ? Number(this.state.active) - 1 : this.props.songList.length - 1)
     };
 
     render(){
@@ -48,9 +46,7 @@ class MusicContainer extends React.Component<MusicPropsType> {
             <div className={`card cardItem ${styles.playlist}`}>
                 <Music listSongs={this.props.songList}
                        play={this.handlePlay}
-                       // handle={this.handlePlay}
                        active={active}
-                       idx={active}
                        pause={pause}
                        stop={this.togglePause}
                        next={this.next}
