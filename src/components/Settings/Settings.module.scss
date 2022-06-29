@@ -1,1 +1,11 @@
+@use '../../scss/variables' as vars;
 
+.greeting {
+  height: 310px;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: vars.$text_accent_color;
+}
