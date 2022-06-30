@@ -34,15 +34,13 @@ export const AddMessages = (props: PropsType) => {
                   // formik.resetForm();
               }}>
             
-            <div>
+            <div className="mb-2">
                 <textarea
                     {...formik.getFieldProps("newMessageBody")}
-                    className={styles.textField}></textarea>
+                    className="form-control" ></textarea>
                 { hasError ? <div className={"error-message"}>{formik.errors.newMessageBody}</div> : null}
             </div>
-            <div>
-                <button className={styles.btn} type="submit">Send</button>
-            </div>
+            <div className={"d-flex justify-content-end mt-3"}><button className="btn btnCustom" type="button">Send</button></div>
         </form>
     )
 }
