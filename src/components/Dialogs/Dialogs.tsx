@@ -12,18 +12,19 @@ export const Dialogs = (props: DialogsPropsType) => {
     let messagesElements = props.dialogsPage.messages.map(m => <Message key={m.id} message={m.message}/>);
     
     return (
-        <div className={styles.dialogs}>
-            <div className={styles.dialogsItem}>
-                {dialogsElements}
-            </div>
-            <div>
-                <div className={styles.messages}>
-                    {messagesElements}
+        <div className="card cardItem">
+            <div className={styles.dialogs}>
+                <div className={styles.dialogsUsers}>
+                    {dialogsElements}
                 </div>
-                <div>Enter message</div>
-                <AddMessages addMessageCallback={props.addMessage}/>
+                <div className={styles.messagesBox}>
+                    <div className={styles.messages}>
+                        {messagesElements}
+                    </div>
+                    <h5 className="mt-4">Enter message</h5>
+                    <AddMessages addMessageCallback={props.addMessage}/>
+                </div>
             </div>
-        
         </div>
     )
 };
