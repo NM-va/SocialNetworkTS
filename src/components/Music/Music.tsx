@@ -48,18 +48,17 @@ const SongPlayPanel:React.FC<SongPropsType> = ({ stop, next, prev, pause}: SongP
     const handleToggleStop = () => {
         stop();
     };
-
-
+    
     return (
         <div className={styles.songPlayPanel}>
-            <div className={`${styles.play} ${styles.songControls}`}>
-                <button className={`btn ${styles.songBtn} ${styles.prev}`}  disabled={!prev} onClick={prev}>
+            <div className={`${styles.songControls}`}>
+                <button className={`btn ${styles.songBtn}`}  disabled={!prev} onClick={prev}>
                     <i className="bi bi-skip-start-fill"></i>
                 </button>
                 <button className={`btn ${styles.songBtn}`} onClick={handleToggleStop}>
                     <i className={classNames("bi", pause ? "bi-play-fill" : "bi-pause-fill")}></i>
                 </button>
-                <button className={`btn ${styles.songBtn} ${styles.next}`} disabled={!next} onClick={next}>
+                <button className={`btn ${styles.songBtn}`} disabled={!next} onClick={next}>
                     <i className="bi bi-skip-end-fill"></i>
                 </button>
                 <button className={`btn ${styles.songBtn}`}>

@@ -10,7 +10,7 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding:  0 0 1rem;
+  padding: 0 0 1rem;
   background-color: vars.$second_bg;
   border-radius: 1rem;
   box-sizing: border-box;
@@ -19,7 +19,7 @@
 
 .listSongsWrapper {
   flex: 1;
-  width: calc(100% + 1.7rem);
+  width: 100%;
   overflow-y: auto;
 }
 
@@ -28,10 +28,13 @@
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 0.6rem 3rem 0.6rem 1.5rem;
-  transition: 0.3s ease-in;
-  box-sizing: border-box;
-  background-color: white;
+  padding: 1rem 1.5rem;
+  transition: .3s ease-in;
+  background-color: vars.$second_bg;
+
+  @media (max-width: 767px) {
+    padding: .6rem;
+  }
 
   &:before {
     content: '';
@@ -43,7 +46,7 @@
     height: 100%;
     background-image: linear-gradient(to right, vars.$main_bg, vars.$main_bg_tr);
     opacity: 0;
-    transition: 0.3s ease-out;
+    transition: .3s ease-out;
     transform: translateX(-100%);
   }
 
@@ -65,12 +68,18 @@
   position: relative;
   z-index: 2;
   display: flex;
+  flex-shrink: 0;
   width: 3rem;
   height: 3rem;
   border-radius: .75rem;
   overflow: hidden;
   margin: 0;
-  transition: 0.3s;
+  transition: .3s;
+
+  @media (max-width: 767px) {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 }
 
 .listSongsImg {
@@ -85,13 +94,13 @@
   flex-direction: column;
   justify-content: space-around;
   flex: 1;
-  width: calc(100%);
+  width: 100%;
   height: 100%;
   cursor: pointer;
-  padding: .5rem;
+  padding: 0 .5rem;
   box-sizing: border-box;
   border-radius: .75rem;
-  transition: 0.15s;
+  transition: .15s;
 }
 
 .songAuthor,
@@ -113,14 +122,14 @@
 }
 
 .songDuration {
-  transition: 0.3s;
+  transition: .3s;
 }
 
 .songStatus {
   display: flex;
   width: calc(100% - 3rem);
-  height: 0.2rem;
-  border-radius: 0.1rem;
+  height: .2rem;
+  border-radius: .1rem;
   background-color: vars.$main_bg_tr;
 
   span {
@@ -128,7 +137,6 @@
     background-color: vars.$main_bg_tr;
   }
 }
-
 
 .songBtn {
   cursor: pointer;
@@ -141,10 +149,15 @@
   border-radius: 100%;
   background-color: vars.$main_bg;
   border: none;
-  transition: 0.15s;
+  transition: .15s;
+
+  @media (max-width: 767px) {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
 
   i {
-    opacity: 0.7;
+    opacity: .7;
     font-size: 1.2rem;
     line-height: 1;
   }
@@ -175,14 +188,28 @@
   align-items: center;
   justify-content: center;
   padding: 1rem;
-  height: 90px;
   width: 100%;
   background-color: vars.$third_bg_tr;
   border-radius: 2rem;
   box-sizing: border-box;
-  transition: 0.45s;
+  transition: .45s;
   box-shadow: vars.$box-shadow;
-  animation: popup 0.45s forwards;
+  animation: popup .45s forwards;
+
+  @media (max-width: 767px) {
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+  }
+
+  .songBtn {
+    &:first-child {
+      margin-left: 0;
+    }
+
+    @media (max-width: 767px) {
+      margin-left: .875rem;
+    }
+  }
 }
 
 .songControls {
