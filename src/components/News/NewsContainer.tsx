@@ -5,10 +5,10 @@ import {StoreType} from "../../redux/redux-store";
 import {withRouter} from "react-router";
 import {compose} from "redux";
 import {News} from "./News";
-import {FriendItemMainType} from "../../redux/sidebar-reducer";
+import {NewsFriendItemType} from "../../redux/news-reducer";
 
 type MapStateToPropsType = {
-    users: FriendItemMainType[]
+    users: NewsFriendItemType[]
 }
 
 
@@ -25,7 +25,7 @@ class NewsContainer extends React.Component<UsersNewsTypeProps, StoreType> {
 }
 
 let mapStateToProps = (state: StoreType): MapStateToPropsType => ({
-    users: state.sidebar.friends,
+    users: state.news.friends,
 });
 
 export default compose<React.ComponentType>(

@@ -1,16 +1,14 @@
 import React from "react";
 import styles from "./News.module.scss";
 import {NavLink} from "react-router-dom";
-import {UsersNewsTypeProps} from "./NewsContainer";
-import {FriendItemMainType} from "../../redux/sidebar-reducer";
+import {NewsFriendItemType} from "../../redux/news-reducer";
 
 
-export const NewsItem = (props: FriendItemMainType) => {
+export const NewsItem = (props: NewsFriendItemType) => {
 
     return (
         <div className="card cardItem mb-4">
             <div className="newsTitle mb-3">
-                {/*<UserAvatar photos={} avatarClassName={"small"} address={"/"} sizePhoto={"small"}/>*/}
                 <div className={"userItemBox"}>
                     <NavLink className="userAvatarSmall" to={props.address}>
                         <img className="userAvatarImg" src={props.avatar} alt=""/>
