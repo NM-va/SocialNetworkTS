@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './Header.module.scss';
+import React from "react";
+import styles from "./Header.module.scss";
 import {Link} from "react-router-dom";
 import {AuthPropsType} from "./HeaderContainer";
 import {HeaderProfileSettings} from "./HeaderProfileSettings/HeaderProfileSettings";
@@ -12,7 +12,7 @@ export const Header = (props: AuthPropsType) => {
                     <div className="row align-items-center">
                         <div className="col-md-2">
                             <div className={`${styles.headerLogo} text-center`}>
-                                <Link to={'/'}>
+                                <Link to={"/"}>
                                     <img src="https://image.freepik.com/free-vector/linear-flat-ninja-logo-template_23-2149000884.jpg" alt="brand logo"/>
                                 </Link>
                             </div>
@@ -22,7 +22,7 @@ export const Header = (props: AuthPropsType) => {
                                 <div className={styles.profileSettingBox}>
                                     {props.isAuth
                                         ? <HeaderProfileSettings email={props.email} login={props.login} profile={props.profile} logout={props.logout}/>
-                                        : <Link to={'/login'}>Login</Link>
+                                        : <Link className={"btnText"} to={"/login"}>Login</Link>
                                     }
                                 </div>
                             </div>

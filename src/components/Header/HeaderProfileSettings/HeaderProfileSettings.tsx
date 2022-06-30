@@ -22,7 +22,7 @@ export const HeaderProfileSettings = ({login, email, logout, profile}: PropsType
 
     useEffect(() => {
         if (profile?.isOwner) {
-            setOwnerAvatar(srcAvatar)
+            setOwnerAvatar(srcAvatar);
         }
     }, [ownerAvatar, profile?.isOwner]);
 
@@ -35,11 +35,9 @@ export const HeaderProfileSettings = ({login, email, logout, profile}: PropsType
             {isOpenDropdown &&
                 <div className={styles.profileDropdown}>
                     <div className={styles.profileHead}>
-                        <h6 className={styles.userName}>
-                            <NavLink to="/profile" activeClassName={styles.activeLink}  className={styles.userName}>
-                                {login}
-                            </NavLink>
-                        </h6>
+                        <NavLink to="/profile" activeClassName={styles.activeLink}  className={styles.userName}>
+                            {login}
+                        </NavLink>
                         <NavLink to="/profile" activeClassName={styles.activeLink} className={styles.userMail}>{email}</NavLink>
                     </div>
                     <div className={styles.profileBody}>
@@ -53,8 +51,7 @@ export const HeaderProfileSettings = ({login, email, logout, profile}: PropsType
                         </ul>
                         <ul>
                             <li>
-                                <NavLink to="signup.html" onSubmit={logout}><i className="bi bi-door-open"></i>Sing
-                                    out</NavLink>
+                                <button className={styles.btnLogout} onClick={logout}><i className="bi bi-door-open"></i>Sing out</button>
                             </li>
                         </ul>
                     </div>

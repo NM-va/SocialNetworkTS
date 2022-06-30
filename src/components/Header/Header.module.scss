@@ -34,7 +34,9 @@
         height: 100%;
         border-radius: 100%;
         object-fit: cover;
-        object-position: 50% 50%
+        object-position: 50% 50%;
+        overflow: hidden;
+        text-indent: 100%;
     }
 
     .profileDropdown {
@@ -51,25 +53,25 @@
     .profileHead {
         padding: 20px;
 
+        a {
+            display: block;
+        }
+
         .userName {
             font-size: 16px;
             font-weight: 500;
             line-height: 1;
-            padding-bottom: 7px;
+            color: vars.$text_color;
+            margin-bottom: .5rem;
 
-            a {
-                color: vars.$text_color;
-
-                &:hover {
-                    color: vars.$text_accent_color;
-                }
+            &:hover {
+                color: vars.$text_accent_color;
             }
         }
 
         .userMail {
             font-size: 13px;
             color: vars.$text_muted_color;
-            display: block;
 
             &:hover {
                 color: vars.$text_accent_color;
@@ -93,6 +95,7 @@
                 a {
                     color: vars.$text_muted_color;
                     padding: 0 20px;
+                    display: block;
 
                     i {
                         font-size: 16px;
@@ -106,6 +109,20 @@
                     }
                 }
             }
+        }
+    }
+
+    .btnLogout {
+        color: vars.$text_muted_color;
+        padding: 0 20px;
+        border: none;
+        background: none;
+        display: block;
+        width: 100%;
+        text-align: left;
+
+        &:hover {
+            color: vars.$text_accent_color;
         }
     }
 }
