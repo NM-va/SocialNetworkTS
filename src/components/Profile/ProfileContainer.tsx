@@ -13,6 +13,7 @@ import {
 import {RouteComponentProps, withRouter} from "react-router";
 import {compose} from "redux";
 import {ProfileDataFormType} from "./ProfileInfo/ProfileDataForm";
+import {withAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 
 type MapStateToPropsType = {
@@ -88,5 +89,5 @@ let mapStateToProps = (state: StoreType, ownProps: RouteComponentProps<PathParam
 
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {getUserProfile, getUserStatus, updateStatus, savePhoto, saveProfile}),
-    withRouter,
+    withRouter, withAuthRedirect
 )(ProfileContainer);
