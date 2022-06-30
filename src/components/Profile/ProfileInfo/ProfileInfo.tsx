@@ -47,7 +47,7 @@ export const ProfileInfo = ({
         <div className="card cardItem">
             <h4 className="titleInfo">Personal information</h4>
             <div className="row mb-4">
-                <div className="col-md-4">
+                <div className="col-md-4 mb-3 mb-md-0">
                     <div className={styles.userAvatarImg}>
                         <img src={profile.photos.large || userPhoto} alt=""/>
                     </div>

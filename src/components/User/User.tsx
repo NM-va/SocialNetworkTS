@@ -21,7 +21,7 @@ export const User = ({
                       }: PropsType) => {
     
     return (
-        <div className="col-6 mb-4">
+        <div className="col-12 col-sm-6 mb-4">
             <div className={`userItemBox ${styles.userItem}`}>
                 <UserAvatar photos={user.photos}  avatarClassName={"userAvatarSmall"} address={`/profile/${user.id}`} sizePhoto={"small"}/>
                 <div className={"userInfo"}>

@@ -4,6 +4,10 @@
     background-color: vars.$second_bg;
     padding-top: 10px;
     padding-bottom: 10px;
+
+    @media (max-width: 767px) {
+        padding-top: 60px;
+    }
 }
 
 .menu {
@@ -17,7 +21,12 @@
     color: vars.$text_color;
     margin-left: auto;
     margin-right: auto;
-    padding: 20px 0;
+    padding: 1.25rem 0;
+
+    @media (max-width: 767px) {
+        padding-top: .625rem;
+        padding-bottom: .625rem;
+    }
 
     &:hover {
         color: vars.$text_accent_color;
