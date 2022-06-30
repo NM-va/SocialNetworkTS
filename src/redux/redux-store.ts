@@ -7,6 +7,7 @@ import {authReducer} from "./auth-reducer";
 import thunkMiddleware from "redux-thunk";
 import {appReducer} from "./app-reducer";
 import { musicReducer } from "./music-reducer";
+import { newsReducer } from "./news-reducer";
 
 
 let reducer = combineReducers({
@@ -16,7 +17,8 @@ let reducer = combineReducers({
     users: usersReducer,
     auth: authReducer,
     app: appReducer,
-    music: musicReducer
+    music: musicReducer,
+    news: newsReducer
 });
 
 export type StoreType = ReturnType<typeof reducer>;
