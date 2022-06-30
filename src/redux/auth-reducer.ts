@@ -51,7 +51,7 @@ export const authReducer = (state: InitialStateType = initialState, action: Acti
 };
 
 //actions
-export const setAuthUserData = (userId: string | null, email: string | null, login: string | null, isAuth: boolean) =>({type: SET_USER_DATA,
+export const setAuthUserData = (userId: string | null, login: string | null, email: string | null, isAuth: boolean) =>({type: SET_USER_DATA,
     payload: {userId, email, login, isAuth}} as const);
 export const getCaptchaUrlSuccess = (captchaUrl: string) =>({type: GET_CAPTCHA_URL_SUCCESS,
     payload: {captchaUrl}} as const);
