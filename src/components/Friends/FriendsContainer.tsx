@@ -17,4 +17,4 @@ let mapStateToProps = (state: StoreType) => {
     }
 };
 
-export const FriendsContainer = connect(mapStateToProps, {})(Friends)
+export const FriendsContainer = connect(mapStateToProps, {})(Friends);
