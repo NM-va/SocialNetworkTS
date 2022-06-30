@@ -62,14 +62,12 @@ export const ProfileInfo = ({
                         <h4 className="">Profile info</h4>
                     {isOwner && !editMode && <button onClick={goToEditMode} className="btn btnText">Edit info <i className="bi bi-pencil"></i></button> }
                     </div>
-
                 {
                     editMode
                         ? <ProfileDataForm  profile={profile} saveProfile={saveProfile} setEditMode={setEditModeCallback}/>
                         : <ProfileData profile={profile}/>
                 }
             </div>
-
         </div>
     )
 };
